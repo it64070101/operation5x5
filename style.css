@@ -1,0 +1,64 @@
+body {
+    background: #66705D;
+    font-family: 'Noto Sans Thai Looped', sans-serif;
+    font-family: 'Sriracha', cursive;
+}
+
+form {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 1rem;
+    flex-shrink: 0;
+}
+
+button.select {
+    display: flex;
+    width: 24rem;
+    height: 5.375rem;
+    padding: 0.6875rem;
+    justify-content: center;
+    align-items: center;
+    gap: 0.625rem;
+    flex-shrink: 0;
+    font-family: 'Noto Sans Thai Looped', sans-serif;
+    border-radius: 0.625rem;
+    background: #EF9936;
+    box-shadow: 0px 8px 8px 0px rgba(0, 0, 0, 0.25);
+    border: 0;
+}
+
+button.small {
+    display: flex;
+    width: 16rem;
+    padding: 0.6875rem;
+    justify-content: center;
+    align-items: center;
+    gap: 0.625rem;
+    border-radius: 0.625rem;
+    background: #66705D;
+    box-shadow: 0px 8px 8px 0px rgba(0, 0, 0, 0.25);
+    border: 0;
+}
+
+#logo {
+    color: #FFF;
+    font-family: 'Noto Sans Thai Looped', sans-serif;
+    font-size: 4rem;
+    font-style: normal;
+    font-weight: 900;
+    line-height: normal;
+}
+
+.container {
+    margin: auto;
+    width: 34rem;
+}
+
+.page {
+    width: 34rem;
+    height: 50.375rem;
+    flex-shrink: 0;
+    border-radius: 0.625rem;
+    background: #DCD7AA;
+}
