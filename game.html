@@ -12,18 +12,19 @@
 <body>
     <div id="main">
         <h1>TIC TAC TOE</h1>
-        <p id="ins">
+        <p class="ins">
             Game starts by just Tap on
             box<br><br>First Player starts as
             <b>Player X </b>And Second Player as
             <b>Player 0</b>
         </p>
+        <p class="ins" id="player-turn">Player X Turn</p>
         <br><br>
         <div id="main-display">
             <div></div>
             <button class="but" id="top-but" onclick="run(1)">Top</button>
             <div></div>
-            <button class="but" id="lef-but" onclick="run(0)">Left</button>
+            <button class="but" id="lef-but" onclick="run(2)">Left</button>
             <div class="ui">
                 <div class="row">
                     <input type="text" id="a1" class="cell" onclick="selected(0, 0, 0)" readonly>
@@ -61,7 +62,7 @@
                     <input type="text" id="e5" class="cell" onclick="selected(24, 4, 4)" readonly>
                 </div>
             </div>
-            <button class="but" id="rig-but" onclick="run(0)">Right</button>
+            <button class="but" id="rig-but" onclick="run(3)">Right</button>
             <div></div>
             <button class="but" id="bot-but" onclick="run(4)">Bottom</button>
             <div></div>
@@ -71,10 +72,6 @@
         <br><br>
         <button class="but" onclick="reset()">
             RESET
-        </button>
-        <br><br>
-        <button class="but" onclick="lock(), render()">
-            DISABLE
         </button>
     </div>
 
