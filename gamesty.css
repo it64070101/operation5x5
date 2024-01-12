@@ -1,113 +1,93 @@
-h1 { 
-	color: orangered; 
-	margin-bottom: -5px; 
-} 
-p { 
-	margin-bottom: -10px; 
-} 
-.ui { 
-	display: flex; 
-	flex-direction: column; 
-	align-items: center; 
-} 
-.row { 
-	display: flex; 
-} 
-.cell { 
-	border: 1px solid gray; 
-	width: 80px; 
-	height: 80px; 
-	display: flex; 
-	align-items: center; 
-	justify-content: center; 
-	font-size: 24px; 
-	text-align: center; 
-	cursor: pointer; 
-} 
-.cell:active { 
-	outline: none; 
-} 
-/* 3*3 Grid */
-#b1{ 
-	border-bottom: 1px solid gray; 
-	border-right: 1px solid gray; 
-} 
+h1 {
+	color: orangered;
+	margin-bottom: -5px;
+}
 
-#b2 { 
-	border-bottom: 1px solid gray; 
-	border-right: 1px solid gray; 
-	border-left: 1px solid gray; 
-} 
+p {
+	margin-bottom: -10px;
+}
 
-#b3 { 
-	border-bottom: 1px solid gray; 
-	border-left: 1px solid gray; 
-} 
+#main-display {
+	display: grid;
+	grid-template-columns: auto auto auto;
+}
 
-#b4 { 
-	border-top: 1px solid gray; 
-	border-bottom: 1px solid gray; 
-	border-right: 1px solid gray; 
-} 
-	
-#b5 { 
-	border: 1px solid gray; 
-} 
+.ui {
+	display: flex;
+	flex-direction: column;
+	align-items: center;
+}
 
-#b6 { 
-	border-top: 1px solid gray; 
-	border-bottom: 1px solid gray; 
-	border-left: 1px solid gray; 
-} 
+.row {
+	display: flex;
+}
 
-#b7 { 
-	border-top: 1px solid gray; 
-	border-right: 1px solid gray; 
-} 
+.cell {
+	border: 1px solid gray;
+	width: 80px;
+	height: 80px;
+	display: flex;
+	align-items: center;
+	justify-content: center;
+	font-size: 24px;
+	text-align: center;
+	cursor: pointer;
+}
 
-#b8 { 
-	border-top: 1px solid gray; 
-	border-right: 1px solid gray; 
-	border-left: 1px solid gray; 
-} 
+.cell:active {
+	outline: none;
+}
 
-#b9 { 
-	border-top: 1px solid gray; 
-	border-left: 1px solid gray; 
-} 
 /* Reset Button */
-#but { 
-	box-sizing: border-box; 
-	width: 95px; 
-	height: 40px; 
-	border: 1px solid dodgerblue; 
-	margin-left: auto; 
-	border-radius: 8px; 
-	font-family: Verdana, 
-		Geneva, Tahoma, sans-serif; 
+.but {
+	box-sizing: border-box;
+	width: 95px;
+	height: 40px;
+	border: 1px solid dodgerblue;
+	margin-left: auto;
+	border-radius: 8px;
+	font-family: Verdana,
+		Geneva, Tahoma, sans-serif;
 
-	background-color: whitesmoke; 
-	color: dodgerblue; 
-	font-size: 20px; 
-	cursor: pointer; 
-} 
+	background-color: whitesmoke;
+	color: dodgerblue;
+	font-size: 20px;
+	cursor: pointer;
+}
+
+#top-but {
+	margin: auto;
+}
+
+#lef-but {
+	margin: auto;
+}
+
+#rig-but {
+	margin: auto;
+	margin-right: 100%;
+}
+
+#bot-but {
+	margin: auto;
+}
 
 /* Player turn space */
-#print { 
-	font-family: Verdana, 
-		Geneva, Tahoma, sans-serif; 
-	color: dodgerblue; 
-	font-size: 20px; 
-} 
+#print {
+	font-family: Verdana,
+		Geneva, Tahoma, sans-serif;
+	color: dodgerblue;
+	font-size: 20px;
+}
 
 /* Main Container */
-#main { 
-	text-align: center; 
-} 
+#main {
+	text-align: center;
+}
 
 /* Game Instruction Text */
-#ins { 
-	font-family: Verdana,Geneva, 
-					Tahoma, sans-serif; 
-	color: dodgerblue; 
+#ins {
+	font-family: Verdana, Geneva,
+		Tahoma, sans-serif;
+	color: dodgerblue;
 }
