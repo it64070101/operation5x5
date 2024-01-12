@@ -21,9 +21,9 @@
         <br><br>
         <div id="main-display">
             <div></div>
-            <button class="but" id="top-but" onclick="run()">Top</button>
+            <button class="but" id="top-but" onclick="run(1)">Top</button>
             <div></div>
-            <button class="but" id="lef-but" onclick="run()">Left</button>
+            <button class="but" id="lef-but" onclick="run(0)">Left</button>
             <div class="ui">
                 <div class="row">
                     <input type="text" id="a1" class="cell" onclick="selected(0, 0, 0)" readonly>
@@ -34,23 +34,23 @@
                 </div>
                 <div class="row">
                     <input type="text" id="b1" class="cell" onclick="selected(5, 1, 0)" readonly>
-                    <input type="text" id="b2" class="cell" onclick="selected(6, 1, 1)" readonly>
-                    <input type="text" id="b3" class="cell" onclick="selected(7, 1, 2)" readonly>
-                    <input type="text" id="b4" class="cell" onclick="selected(8, 1, 3)" readonly>
+                    <input type="text" id="b2" class="cell" readonly disabled>
+                    <input type="text" id="b3" class="cell" readonly disabled>
+                    <input type="text" id="b4" class="cell" readonly disabled>
                     <input type="text" id="b5" class="cell" onclick="selected(9, 1, 4)" readonly>
                 </div>
                 <div class="row">
                     <input type="text" id="c1" class="cell" onclick="selected(10, 2, 0)" readonly>
-                    <input type="text" id="c2" class="cell" onclick="selected(11, 2, 1)" readonly>
-                    <input type="text" id="c3" class="cell" onclick="selected(12, 2, 2)" readonly>
-                    <input type="text" id="c4" class="cell" onclick="selected(13, 2, 3)" readonly>
+                    <input type="text" id="c2" class="cell" readonly disabled>
+                    <input type="text" id="c3" class="cell" readonly disabled>
+                    <input type="text" id="c4" class="cell" readonly disabled>
                     <input type="text" id="c5" class="cell" onclick="selected(14, 2, 4)" readonly>
                 </div>
                 <div class="row">
                     <input type="text" id="d1" class="cell" onclick="selected(15, 3, 0)" readonly>
-                    <input type="text" id="d2" class="cell" onclick="selected(16, 3, 1)" readonly>
-                    <input type="text" id="d3" class="cell" onclick="selected(17, 3, 2)" readonly>
-                    <input type="text" id="d4" class="cell" onclick="selected(18, 3, 3)" readonly>
+                    <input type="text" id="d2" class="cell" readonly disabled>
+                    <input type="text" id="d3" class="cell" readonly disabled>
+                    <input type="text" id="d4" class="cell" readonly disabled>
                     <input type="text" id="d5" class="cell" onclick="selected(19, 3, 4)" readonly>
                 </div>
                 <div class="row">
@@ -61,9 +61,9 @@
                     <input type="text" id="e5" class="cell" onclick="selected(24, 4, 4)" readonly>
                 </div>
             </div>
-            <button class="but" id="rig-but" onclick="run()">Right</button>
+            <button class="but" id="rig-but" onclick="run(0)">Right</button>
             <div></div>
-            <button class="but" id="bot-but" onclick="run()">Bottom</button>
+            <button class="but" id="bot-but" onclick="run(4)">Bottom</button>
             <div></div>
         </div>
         <br>

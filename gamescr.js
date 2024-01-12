@@ -19,7 +19,12 @@ function reset() {
     let allcell = document.getElementsByClassName("cell");
     let celllen = allcell.length;
     for (let i = 0; i < celllen; i++) {
-        allcell[i].disabled = false;
+        if ((i >= 0 && i <= 5) || (i >= 9 && i <= 10) || (i >= 14 && i <= 15) || (i >= 19 && i <= 24)) {
+            allcell[i].disabled = false;
+        }
+        else {
+            allcell[i].disabled = true;
+        }
         allcell[i].value = null;
     }
     turn = 0;
@@ -49,7 +54,12 @@ function enableAll() {
     let allcell = document.getElementsByClassName("cell");
     let celllen = allcell.length;
     for (let i = 0; i < celllen; i++) {
-        allcell[i].disabled = false;
+        if ((i >= 0 && i <= 5) || (i >= 9 && i <= 10) || (i >= 14 && i <= 15) || (i >= 19 && i <= 24)) {
+            allcell[i].disabled = false;
+        }
+        else {
+            allcell[i].disabled = true;
+        }
     }
 }
 
@@ -205,7 +215,7 @@ function selected(cellNum, row, col) {
     }
 }
 
-function run() {
+function run(from) {
     if (select == 1) {
         if (tttdata[selectrow][selectcol] == 0) {
             if (turn == 0) {
@@ -215,6 +225,30 @@ function run() {
                 tttdata[selectrow][selectcol] = 2;
             }
         }
+
+        if (from == 1) {
+            let save = tttdata[selectrow][selectcol];
+            for (let i = selectrow; i >= 0; i--){
+                if (i == 0) {
+                    tttdata[i][selectcol] = save;
+                }
+                else {
+                    tttdata[i][selectcol] = tttdata[i-1][selectcol];
+                }
+            }
+        }
+        else if (from == 4) {
+            let save = tttdata[selectrow][selectcol];
+            for (let i = selectrow; i < 5; i++){
+                if (i == 4) {
+                    tttdata[i][selectcol] = save;
+                }
+                else {
+                    tttdata[i][selectcol] = tttdata[i+1][selectcol];
+                }
+            }
+        }
+
         if (turn == 0) {
             turn = 1;
         }
