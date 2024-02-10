@@ -7,76 +7,74 @@
     <title>Game</title>
     <!-- CSS file Included -->
     <link rel="stylesheet" type="text/css" href="gamesty.css">
+    <link rel="stylesheet" type="text/css" href="style.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css" />
 </head>
 
 <body>
-    <div id="main">
-        <h1>TIC TAC TOE</h1>
-        <p class="ins">
-            Game starts by just Tap on
-            box<br><br>First Player starts as
-            <b>Player X </b>And Second Player as
-            <b>Player 0</b>
-        </p>
-        <p class="ins" id="player-turn">Player X Turn</p>
-        <br><br>
-        <div id="main-display">
-            <div></div>
-            <button class="but" id="top-but" onclick="run(1)">Top</button>
-            <div></div>
-            <button class="but" id="lef-but" onclick="run(2)">Left</button>
-            <div class="ui">
-                <div class="row">
-                    <input type="text" id="a1" class="cell" onclick="selected(0, 0, 0)" readonly>
-                    <input type="text" id="a2" class="cell" onclick="selected(1, 0, 1)" readonly>
-                    <input type="text" id="a3" class="cell" onclick="selected(2, 0, 2)" readonly>
-                    <input type="text" id="a4" class="cell" onclick="selected(3, 0, 3)" readonly>
-                    <input type="text" id="a5" class="cell" onclick="selected(4, 0, 4)" readonly>
+    <div class="container">
+        <div id="logo">OPERATION 5x5</div>
+        <div class="page">
+            <div id="main">
+                <h1 id="player-turn">Player X Turn</h1>
+                <br><br>
+                <div id="main-display">
+                    <div></div>
+                    <button class="but" id="top-but" onclick="run(1)"><i class="fa-solid fa-arrow-down"></i></button>
+                    <div></div>
+                    <button class="but" id="lef-but" onclick="run(2)"><i class="fa-solid fa-arrow-right"></i></button>
+                    <div class="ui">
+                        <div class="row">
+                            <input type="text" id="a1" class="cell" onclick="selected(0, 0, 0)" readonly>
+                            <input type="text" id="a2" class="cell" onclick="selected(1, 0, 1)" readonly>
+                            <input type="text" id="a3" class="cell" onclick="selected(2, 0, 2)" readonly>
+                            <input type="text" id="a4" class="cell" onclick="selected(3, 0, 3)" readonly>
+                            <input type="text" id="a5" class="cell" onclick="selected(4, 0, 4)" readonly>
+                        </div>
+                        <div class="row">
+                            <input type="text" id="b1" class="cell" onclick="selected(5, 1, 0)" readonly>
+                            <input type="text" id="b2" class="cell" readonly disabled>
+                            <input type="text" id="b3" class="cell" readonly disabled>
+                            <input type="text" id="b4" class="cell" readonly disabled>
+                            <input type="text" id="b5" class="cell" onclick="selected(9, 1, 4)" readonly>
+                        </div>
+                        <div class="row">
+                            <input type="text" id="c1" class="cell" onclick="selected(10, 2, 0)" readonly>
+                            <input type="text" id="c2" class="cell" readonly disabled>
+                            <input type="text" id="c3" class="cell" readonly disabled>
+                            <input type="text" id="c4" class="cell" readonly disabled>
+                            <input type="text" id="c5" class="cell" onclick="selected(14, 2, 4)" readonly>
+                        </div>
+                        <div class="row">
+                            <input type="text" id="d1" class="cell" onclick="selected(15, 3, 0)" readonly>
+                            <input type="text" id="d2" class="cell" readonly disabled>
+                            <input type="text" id="d3" class="cell" readonly disabled>
+                            <input type="text" id="d4" class="cell" readonly disabled>
+                            <input type="text" id="d5" class="cell" onclick="selected(19, 3, 4)" readonly>
+                        </div>
+                        <div class="row">
+                            <input type="text" id="e1" class="cell" onclick="selected(20, 4, 0)" readonly>
+                            <input type="text" id="e2" class="cell" onclick="selected(21, 4, 1)" readonly>
+                            <input type="text" id="e3" class="cell" onclick="selected(22, 4, 2)" readonly>
+                            <input type="text" id="e4" class="cell" onclick="selected(23, 4, 3)" readonly>
+                            <input type="text" id="e5" class="cell" onclick="selected(24, 4, 4)" readonly>
+                        </div>
+                    </div>
+                    <button class="but" id="rig-but" onclick="run(3)"><i class="fa-solid fa-arrow-left"></i></button>
+                    <div></div>
+                    <button class="but" id="bot-but" onclick="run(4)"><i class="fa-solid fa-arrow-up"></i></button>
+                    <div></div>
                 </div>
-                <div class="row">
-                    <input type="text" id="b1" class="cell" onclick="selected(5, 1, 0)" readonly>
-                    <input type="text" id="b2" class="cell" readonly disabled>
-                    <input type="text" id="b3" class="cell" readonly disabled>
-                    <input type="text" id="b4" class="cell" readonly disabled>
-                    <input type="text" id="b5" class="cell" onclick="selected(9, 1, 4)" readonly>
-                </div>
-                <div class="row">
-                    <input type="text" id="c1" class="cell" onclick="selected(10, 2, 0)" readonly>
-                    <input type="text" id="c2" class="cell" readonly disabled>
-                    <input type="text" id="c3" class="cell" readonly disabled>
-                    <input type="text" id="c4" class="cell" readonly disabled>
-                    <input type="text" id="c5" class="cell" onclick="selected(14, 2, 4)" readonly>
-                </div>
-                <div class="row">
-                    <input type="text" id="d1" class="cell" onclick="selected(15, 3, 0)" readonly>
-                    <input type="text" id="d2" class="cell" readonly disabled>
-                    <input type="text" id="d3" class="cell" readonly disabled>
-                    <input type="text" id="d4" class="cell" readonly disabled>
-                    <input type="text" id="d5" class="cell" onclick="selected(19, 3, 4)" readonly>
-                </div>
-                <div class="row">
-                    <input type="text" id="e1" class="cell" onclick="selected(20, 4, 0)" readonly>
-                    <input type="text" id="e2" class="cell" onclick="selected(21, 4, 1)" readonly>
-                    <input type="text" id="e3" class="cell" onclick="selected(22, 4, 2)" readonly>
-                    <input type="text" id="e4" class="cell" onclick="selected(23, 4, 3)" readonly>
-                    <input type="text" id="e5" class="cell" onclick="selected(24, 4, 4)" readonly>
-                </div>
+                <br>
+                <p id="print"></p>
+                <button class="but" onclick="reset()"><i class="fa-solid fa-arrow-rotate-right"></i></button>
             </div>
-            <button class="but" id="rig-but" onclick="run(3)">Right</button>
-            <div></div>
-            <button class="but" id="bot-but" onclick="run(4)">Bottom</button>
-            <div></div>
         </div>
-        <br>
-        <p id="print"></p>
-        <br><br>
-        <button class="but" onclick="reset()">
-            RESET
-        </button>
     </div>
 
     <!-- JavaScript file included -->
     <script src="gamescr.js"></script>
+    <script src="script.js"></script>
 </body>
 
 </html>

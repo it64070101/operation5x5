@@ -38,6 +38,10 @@ button.small {
     background: #66705D;
 }
 
+button:hover {
+    cursor: pointer;
+}
+
 #logo {
     text-align: center;
     color: #FFF;
