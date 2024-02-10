@@ -21,6 +21,7 @@
       <nav>
         <img src="" id="userImage" class="card-img-top img-cover me-3 logged-in" alt="user-image">
         <p id="showName" class="d-inline me-3 navbar-brand"></p>
+        <script src="https://accounts.google.com/gsi/client" async defer></script>
         <button type="button" id="loginButton" class="btn btn-outline-light logged-out" data-onsuccess="onSignIn">
           <i class="bi bi-person-plus-fill"></i> Log In
         </button>
@@ -32,8 +33,13 @@
   </nav>
   <h1>Google Sign-In Example</h1>
   
-  <a href="#" onclick="signOut();">Sign out</a>
-  
+  <script src="https://accounts.google.com/gsi/client" async defer></script>
+  <div id="g_id_onload"
+       data-client_id="341581812796-t183tihogvi0eqfntr9m404u1n5mc8bf.apps.googleusercontent.com"
+       data-ux_mode="redirect"
+       data-login_uri="https://www.example.com/your_login_endpoint">
+  </div>
+  <div class="g_id_signin" data-type="standard"></div>
   <script>
     function onSignIn(googleUser) {
       var profile = googleUser.getBasicProfile();
