@@ -21,33 +21,50 @@
       <nav>
         <img src="" id="userImage" class="card-img-top img-cover me-3 logged-in" alt="user-image">
         <p id="showName" class="d-inline me-3 navbar-brand"></p>
-        <button type="button" id="btnLogIn" class="btn btn-outline-light logged-out" data-onsuccess="onSignIn">
+        <button type="button" id="loginButton" class="btn btn-outline-light logged-out" data-onsuccess="onSignIn">
           <i class="bi bi-person-plus-fill"></i> Log In
         </button>
-        <button type="button" id="btnLogout" class="btn btn-outline-light logged-in">
+        <button type="button" id="logoutButton" class="btn btn-outline-light logged-in">
           <i class="bi bi-box-arrow-right"></i> Logout
         </button>
       </nav>
     </div>
   </nav>
   <h1>Google Sign-In Example</h1>
-  <div class="g-signin2" data-onsuccess="handleCredentialResponse"></div>
+  
   <a href="#" onclick="signOut();">Sign out</a>
   
   <script>
     function onSignIn(googleUser) {
       var profile = googleUser.getBasicProfile();
-      console.log('ID: ' + profile.getId()); // Do not send to your backend! Use an ID token instead.
-      console.log('Name: ' + profile.getName());
-      console.log('Image URL: ' + profile.getImageUrl());
-      console.log('Email: ' + profile.getEmail()); // This is null if the 'email' scope is not present.
-    }
-    function signOut() {
+      console.log('Logged in as: ' + profile.getName());
+      document.getElementById('loginButton').style.display = 'none';
+      document.getElementById('logoutButton').style.display = 'block';
+  }
+  
+  function onSignOut() {
       var auth2 = gapi.auth2.getAuthInstance();
       auth2.signOut().then(function () {
-        console.log('User signed out.');
+          console.log('User signed out.');
+          document.getElementById('loginButton').style.display = 'block';
+          document.getElementById('logoutButton').style.display = 'none';
       });
-    }
+  }
+  
+  function init() {
+      gapi.load('auth2', function() {
+          gapi.auth2.init();
+      });
+  }
+  
+  document.getElementById('loginButton').addEventListener('click', function() {
+      gapi.auth2.getAuthInstance().signIn();
+  });
+  
+  document.getElementById('logoutButton').addEventListener('click', onSignOut);
+  
+  init();
+  
   </script>
 </body>
 </html>
