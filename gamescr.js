@@ -31,7 +31,6 @@ function reset() {
     select = 0;
     selectrow = 0;
     selectcol = 0;
-    document.getElementById("print").innerHTML = "";
     document.getElementById("player-turn").innerHTML = "Player X Turn";
 }
 
@@ -42,10 +41,10 @@ function lock(win) {
         allcell[i].disabled = true;
     }
     if (win == 1) {
-        document.getElementById("print").innerHTML = "Player X win."
+        document.getElementById("player-turn").innerHTML = "Player X win."
     }
     else {
-        document.getElementById("print").innerHTML = "Player O win."
+        document.getElementById("player-turn").innerHTML = "Player O win."
     }
 }
 
@@ -54,7 +53,7 @@ function enableAll() {
     let cellCount = 0;
     for (let i = 0; i < 5; i++) {
         for (let j = 0; j < 5; j++) {
-            if (((cellCount >= 6 && cellCount <= 8) || (cellCount >= 11 && cellCount <= 13) || (cellCount >= 16 && cellCount <= 18)) || ((turn != tttdata[i][j]) && (tttdata[i][j] != 0))) {
+            if (((cellCount >= 6 && cellCount <= 8) || (cellCount >= 11 && cellCount <= 13) || (cellCount >= 16 && cellCount <= 18)) || ((turn == tttdata[i][j]) && (tttdata[i][j] != 0))) {
                 allcell[cellCount].disabled = true;
             }
             else {
@@ -300,16 +299,16 @@ function run(from) {
         render()
 
         if (turn == 1) {
-            checkY();
-            checkX();
             turn = 2;
             document.getElementById("player-turn").innerHTML = "Player O Turn";
+            checkY();
+            checkX();
         }
         else if (turn == 2) {
-            checkX();
-            checkY();
             turn = 1;
             document.getElementById("player-turn").innerHTML = "Player X Turn";
+            checkX();
+            checkY();
         }
     }
 }
