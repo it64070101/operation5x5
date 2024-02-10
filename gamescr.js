@@ -53,7 +53,7 @@ function enableAll() {
     let cellCount = 0;
     for (let i = 0; i < 5; i++) {
         for (let j = 0; j < 5; j++) {
-            if (((cellCount >= 6 && cellCount <= 8) || (cellCount >= 11 && cellCount <= 13) || (cellCount >= 16 && cellCount <= 18)) || ((turn == tttdata[i][j]) && (tttdata[i][j] != 0))) {
+            if (((cellCount >= 6 && cellCount <= 8) || (cellCount >= 11 && cellCount <= 13) || (cellCount >= 16 && cellCount <= 18)) || ((turn != tttdata[i][j]) && (tttdata[i][j] != 0))) {
                 allcell[cellCount].disabled = true;
             }
             else {
@@ -291,12 +291,12 @@ function run(from) {
         }
 
         select = 0;
-        enableAll();
+        
         document.getElementById("top-but").disabled= false;
         document.getElementById("lef-but").disabled= false;
         document.getElementById("rig-but").disabled= false;
         document.getElementById("bot-but").disabled= false;
-        render()
+        render();
 
         if (turn == 1) {
             turn = 2;
@@ -310,5 +310,7 @@ function run(from) {
             checkX();
             checkY();
         }
+
+        enableAll();
     }
 }
