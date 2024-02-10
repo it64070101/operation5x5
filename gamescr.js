@@ -31,7 +31,6 @@ function reset() {
     select = 0;
     selectrow = 0;
     selectcol = 0;
-    document.getElementById("print").innerHTML = "";
     document.getElementById("player-turn").innerHTML = "Player X Turn";
 }
 
@@ -42,10 +41,10 @@ function lock(win) {
         allcell[i].disabled = true;
     }
     if (win == 1) {
-        document.getElementById("print").innerHTML = "Player X win."
+        document.getElementById("player-turn").innerHTML = "Player X win."
     }
     else {
-        document.getElementById("print").innerHTML = "Player O win."
+        document.getElementById("player-turn").innerHTML = "Player O win."
     }
 }
 
@@ -292,24 +291,26 @@ function run(from) {
         }
 
         select = 0;
-        enableAll();
+        
         document.getElementById("top-but").disabled= false;
         document.getElementById("lef-but").disabled= false;
         document.getElementById("rig-but").disabled= false;
         document.getElementById("bot-but").disabled= false;
-        render()
+        render();
 
         if (turn == 1) {
-            checkY();
-            checkX();
             turn = 2;
             document.getElementById("player-turn").innerHTML = "Player O Turn";
+            checkY();
+            checkX();
         }
         else if (turn == 2) {
-            checkX();
-            checkY();
             turn = 1;
             document.getElementById("player-turn").innerHTML = "Player X Turn";
+            checkX();
+            checkY();
         }
+
+        enableAll();
     }
 }
