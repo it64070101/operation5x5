@@ -11,7 +11,8 @@ function setLinkButton(buttonID, linkTo) {
     }
 }
 
-setLinkButton("login-button", "profile.html");
+// bind for test login
+//setLinkButton("login-button", "profile.html");
 setLinkButton("tutorial-button", "guide.html");
 setLinkButton("play-button", "playmode.html");
 setLinkButton("to-profile-button", "profile.html");
