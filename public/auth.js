@@ -1,8 +1,5 @@
-//const signupForm = document.querySelector("#signup-form");
-//signupForm.addEventListener("submit", createUser);
+const addUser = firebase.database().ref("user_google")
 
-//const signupFeedback = document.querySelector("#feedback-msg-sigup");
-//const signupModal = new bootstrap.Modal(document.querySelector("#modal-signup"));
 var provider = new firebase.auth.GoogleAuthProvider();
 
 firebase.auth().onAuthStateChanged((user) => {
@@ -10,9 +7,9 @@ firebase.auth().onAuthStateChanged((user) => {
       console.log(user)
     //   document.getElementById("userImage").src = user.photoURL;
     //   document.getElementById("showName").innerHTML = user.displayName;
-      getList(user);
+      //getList(user);
     }
-       setupUI(user)
+      //setupUI(user)
   });
 
 // const btnLogout = document.querySelector("#")
@@ -37,7 +34,20 @@ function loginUser(event) {
             var user = result.user;
             // IdP data available in result.additionalUserInfo.profile.
             // ...
-            
+            // Add a second document with a generated ID.
+          // database
+
+          const currentUser = firebase.auth().currentUser;
+          console.log(currentUser.uid)
+          console.log(addUser.child(currentUser.uid))
+          addUser.child(currentUser.uid).update({
+              email: currentUser.email,
+              google_id: currentUser.uid,
+              name: currentUser.displayName,
+          })
+      
+          alert("Add list complete!");
+
         }).catch((error) => {
             // Handle Errors here.
             var errorCode = error.code;
