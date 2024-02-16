@@ -67,6 +67,7 @@ function lock(win) {
     else {
         document.getElementById("player-turn").innerHTML = "Player O win."
     }
+    endGame();
 }
 
 function enableAll() {
@@ -103,18 +104,18 @@ function disabledNotSelect(cellNum) {
     }
 }
 
-function render() {
+function render(table) {
     let allcell = document.getElementsByClassName("cell");
     let cellCount = 0;
     for (let i = 0; i < 5; i++) {
         for (let j = 0; j < 5; j++) {
-            if (tttdata[i][j] == 0) {
+            if (table[i][j] == 0) {
                 allcell[cellCount].value = null;
             }
-            else if (tttdata[i][j] == 1) {
+            else if (table[i][j] == 1) {
                 allcell[cellCount].value = "X";
             }
-            else if (tttdata[i][j] == 2) {
+            else if (table[i][j] == 2) {
                 allcell[cellCount].value = "O";
             }
             cellCount++;
@@ -175,7 +176,6 @@ function checkX() {
             break;
         }
     }
-    console.log("checkX")
 }
 
 function checkY() {
@@ -231,7 +231,6 @@ function checkY() {
             break;
         }
     }
-    console.log("checkY")
 }
 
 function selected(cellNum, row, col) {
@@ -325,27 +324,20 @@ function run(from) {
         document.getElementById("lef-but").disabled = false;
         document.getElementById("rig-but").disabled = false;
         document.getElementById("bot-but").disabled = false;
-        render();
 
         if (turn == 1) {
-            turn = 2;
-            document.getElementById("player-turn").innerHTML = "Player O Turn";
             gameDataRef.child("game-1").update({
                 turn: "o",
+                table: tttdata
             });
-            checkY();
-            checkX();
         }
         else if (turn == 2) {
             turn = 1;
-            document.getElementById("player-turn").innerHTML = "Player X Turn";
             gameDataRef.child("game-1").update({
                 turn: "x",
+                table: tttdata
             });
-            checkX();
-            checkY();
         }
-
         // enableAll();
     }
 }
@@ -372,13 +364,14 @@ function joinGame(event) {
 }
 
 function startGame() {
+    reset();
     gameDataRef.child("game-1").update({
         start: true,
         turn: "x",
         table: [
             [0, 0, 0, 0, 0],
             [0, 0, 0, 0, 0],
-            [0, 0, 5, 0, 0],
+            [0, 0, 0, 0, 0],
             [0, 0, 0, 0, 0],
             [0, 0, 0, 0, 0]
         ]
@@ -397,6 +390,8 @@ gameDataRef.on("value", (snapshot) => {
     updateGame(snapshot);
 })
 
+let total = 0;
+
 function updateGame(snapshot) {
     document.getElementById("inputPlayer-x").value = "";
     document.getElementById("inputPlayer-o").value = "";
@@ -406,18 +401,53 @@ function updateGame(snapshot) {
     btnTerminate.disabled = true;
     playerCount = 0;
     let playerTurn;
-    enableAll();
+    let isPlay
+
+    snapshot.forEach((data) => {
+        const gameInfo = data.val();
+        Object.keys(gameInfo).forEach((key) => {
+            if (key == "start") {
+                isPlay = gameInfo[key]
+            }
+        })
+    })
 
     snapshot.forEach((data) => {
         const gameInfo = data.val();
         Object.keys(gameInfo).forEach((key) => {
             if (key == "turn") {
                 playerTurn = gameInfo[key];
+                if (playerTurn == "x") {
+                    turn = 1;
+                }
+                else if (playerTurn == "o") {
+                    turn = 2;
+                }
             }
         })
     })
 
-    // console.log(playerTurn);
+    document.getElementById("player-turn").innerHTML = "Player " + playerTurn + " Turn";
+
+    snapshot.forEach((data) => {
+        const gameInfo = data.val();
+        Object.keys(gameInfo).forEach((key) => {
+            if (key == "table") {
+                tttdata = gameInfo[key];
+                render(gameInfo[key]);
+                if (turn == 1) {
+                    checkX();
+                    checkY();
+                }
+                else if (turn == 2) {
+                    checkY();
+                    checkX();
+                }
+            }
+        })
+    })
+
+    enableAll();
 
     snapshot.forEach((data) => {
         const gameInfo = data.val();
@@ -430,7 +460,6 @@ function updateGame(snapshot) {
                         btnJoins.forEach((btnJoin) => btnJoin.disabled = true);
                         if (playerTurn == "o") {
                             disabledAll();
-                            console.log("yes")
                         }
                     }
                     playerCount++;
@@ -446,27 +475,24 @@ function updateGame(snapshot) {
                     }
                     playerCount++;
                     break;
-                case "table":
-                    console.log(gameInfo[key][2][2]);
-                    break;
             }
         })
     })
 
-    snapshot.forEach((data) => {
-        const gameInfo = data.val();
-        Object.keys(gameInfo).forEach((key) => {
-            if (key == "start") {
-                if (gameInfo[key]) {
-                    btnTerminate.disabled = false;
-                    document.querySelectorAll(".btn-cancel-join-game").forEach((btnCancel) => btnCancel.disabled = true);
-                }
-                else if (playerCount == 2 && !gameInfo[key]) {
-                    btnStart.disabled = false;
-                }
-            }
-        })
-    })
+    total++;
+    console.log(total);
+
+
+    if (isPlay) {
+        btnTerminate.disabled = false;
+        document.querySelectorAll(".btn-cancel-join-game").forEach((btnCancel) => btnCancel.disabled = true);
+    }
+    else if (playerCount == 2 && !isPlay) {
+        btnStart.disabled = false;
+    }
+    if (!isPlay) {
+        disabledAll();
+    }
 }
 
 const btnCancelsJoins = document.querySelectorAll(".btn-cancel-join-game");
