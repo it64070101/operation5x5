@@ -1,3 +1,14 @@
+const firebaseConfig = {
+  apiKey: "AIzaSyDRDsD1Ea0eXl9CQLGW0uqmebhqP3Mmiuw",
+  authDomain: "operation-5x5.firebaseapp.com",
+  databaseURL: "https://operation-5x5-default-rtdb.asia-southeast1.firebasedatabase.app",
+  projectId: "operation-5x5",
+  storageBucket: "operation-5x5.appspot.com",
+  messagingSenderId: "870363256350",
+  appId: "1:870363256350:web:572187379ae84b0ccd000f",
+  measurementId: "G-1KSH1NP49Z"
+};
+firebase.initializeApp(firebaseConfig)
 const addUser = firebase.database().ref("user_google")
 
 var provider = new firebase.auth.GoogleAuthProvider();
@@ -12,14 +23,16 @@ firebase.auth().onAuthStateChanged((user) => {
       //setupUI(user)
   });
 
-// const btnLogout = document.querySelector("#")
-// btnLogout.addEventListener("click", function() {
-//     firebase.auth().signOut();
-//     console.log("Logout completed")
-// })
+//const btnLogout = document.querySelector("#logout-button")
+// btnLogout.addEventListener("click", function()
+function logoutUser(){
+    firebase.auth().signOut();
+    console.log("Logout completed")
+    window.location.href = "index.html";
+}
 
-const loginForm = document.querySelector("#login-button");
-loginForm.addEventListener("click", loginUser);
+//const loginForm = document.querySelector("#login-button");
+// loginForm.addEventListener("click", loginUser);
 
 function loginUser(event) {
     firebase.auth()
@@ -46,7 +59,7 @@ function loginUser(event) {
               name: currentUser.displayName,
           })
       
-          alert("Add list complete!");
+          window.location.href = "profile.html";
 
         }).catch((error) => {
             // Handle Errors here.
