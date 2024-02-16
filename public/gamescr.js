@@ -338,7 +338,6 @@ function run(from) {
                 table: tttdata
             });
         }
-        // enableAll();
     }
 }
 
@@ -435,14 +434,6 @@ function updateGame(snapshot) {
             if (key == "table") {
                 tttdata = gameInfo[key];
                 render(gameInfo[key]);
-                if (turn == 1) {
-                    checkX();
-                    checkY();
-                }
-                else if (turn == 2) {
-                    checkY();
-                    checkX();
-                }
             }
         })
     })
@@ -479,10 +470,6 @@ function updateGame(snapshot) {
         })
     })
 
-    total++;
-    console.log(total);
-
-
     if (isPlay) {
         btnTerminate.disabled = false;
         document.querySelectorAll(".btn-cancel-join-game").forEach((btnCancel) => btnCancel.disabled = true);
@@ -493,6 +480,22 @@ function updateGame(snapshot) {
     if (!isPlay) {
         disabledAll();
     }
+
+    snapshot.forEach((data) => {
+        const gameInfo = data.val();
+        Object.keys(gameInfo).forEach((key) => {
+            if (key == "table") {
+                if (turn == 1) {
+                    checkX();
+                    checkY();
+                }
+                else if (turn == 2) {
+                    checkY();
+                    checkX();
+                }
+            }
+        })
+    })
 }
 
 const btnCancelsJoins = document.querySelectorAll(".btn-cancel-join-game");
