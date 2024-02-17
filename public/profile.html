@@ -11,10 +11,13 @@
     <link
         href="https://fonts.googleapis.com/css2?family=Noto+Sans+Thai+Looped:wght@700;900&family=Sriracha&display=swap"
         rel="stylesheet">
-        <script src="https://www.gstatic.com/firebasejs/10.7.2/firebase-app-compat.js"></script>
-        <script src="https://www.gstatic.com/firebasejs/10.7.2/firebase-analytics-compat.js"></script>
-        <script src="https://www.gstatic.com/firebasejs/10.7.2/firebase-database-compat.js"></script>
-        <script src="https://www.gstatic.com/firebasejs/10.8.0/firebase-auth-compat.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/10.7.2/firebase-app-compat.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/10.7.2/firebase-analytics-compat.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/10.7.2/firebase-database-compat.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/10.8.0/firebase-auth-compat.js"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css"
+        integrity="sha512-DTOQO9RWCH3ppGqcWaEA1BIZOC6xxalwEsw9c2QQeAIftl+Vegovlnee1c9QX4TctnWMn13TZye+giMm8e2LwA=="
+        crossorigin="anonymous" referrerpolicy="no-referrer" />
 
 </head>
 
@@ -30,9 +33,13 @@
                     <h2 id="player-matchs">Matchs</h2>
                 </div>
                 <div id="button-container">
-                    <button class="select" type="button" id="play-button">เล่นเกม</button>
-                    <button class="small" type="button" id="tutorial-button">คู่มือ</button>
-                    <button class="select" type="button" id="logout-button" onclick="logoutUser()">ออกจากระบบ Google</button>
+                    <button class="select" type="button" id="play-button"><i class="fa-solid fa-play"></i>
+                        <br>เล่นเกม</button>
+                    <button class="small" type="button" id="tutorial-button"><i
+                            class="fa-solid fa-book-open"></i><br>คู่มือ</button>
+                    <button class="small" type="button" id="logout-button" onclick="logoutUser()"><i
+                            class="fa-solid fa-arrow-right-from-bracket"></i><br>ออกจากระบบ
+                        Google</button>
                 </div>
             </div>
             <div class="page">
@@ -40,7 +47,7 @@
                 <table id="leaderboard">
                     <tr>
                         <th>Rank</th>
-                        <th>Name</th>
+                        <th style="width: 50%;">Name</th>
                         <th>W/L</th>
                     </tr>
                     <tr>
