@@ -33,7 +33,7 @@ function logoutUser(){
 
 //const loginForm = document.querySelector("#login-button");
 // loginForm.addEventListener("click", loginUser);
-
+var add_score = true;
 function loginUser(event) {
     firebase.auth()
         .signInWithPopup(provider)
@@ -51,14 +51,31 @@ function loginUser(event) {
           // database
 
           const currentUser = firebase.auth().currentUser;
-          console.log(currentUser.uid)
-          console.log(addUser.child(currentUser.uid))
           addUser.child(currentUser.uid).update({
               email: currentUser.email,
               google_id: currentUser.uid,
               name: currentUser.displayName,
           })
-      
+          // read data
+          addUser.child(currentUser.uid).once("value").then((snapshot) => {
+            snapshot.forEach((data) => {
+                var id = data.key;
+                var id_data = data.val();
+                if (id == "count_round"){
+                  add_score = false
+                }
+            });
+            // add score win round losr to user
+            if (add_score == true){
+            addUser.child(currentUser.uid).update({
+              count_lose: 0,
+              count_round: 0,
+              count_win: 0,
+            })
+            console.log("add score")
+            }
+          });
+          
           window.location.href = "profile.html";
 
         }).catch((error) => {
