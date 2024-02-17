@@ -414,7 +414,7 @@ function updateGame(snapshot) {
     snapshot.forEach((data) => {
         const gameInfo = data.val();
         Object.keys(gameInfo).forEach((key) => {
-            if (key == "turn") {
+            if (key == "turn" && isPlay) {
                 playerTurn = gameInfo[key];
                 if (playerTurn == "x") {
                     turn = 1;
@@ -485,11 +485,11 @@ function updateGame(snapshot) {
         const gameInfo = data.val();
         Object.keys(gameInfo).forEach((key) => {
             if (key == "table") {
-                if (turn == 1) {
+                if (turn == 2) {
                     checkX();
                     checkY();
                 }
-                else if (turn == 2) {
+                else if (turn == 1) {
                     checkY();
                     checkX();
                 }
