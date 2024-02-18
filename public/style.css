@@ -13,26 +13,28 @@ form {
 }
 
 button {
+    font-family: 'Noto Sans Thai Looped', sans-serif;
     margin: 16px auto 16px auto;
-    /* display: flex; */
     justify-content: center;
     align-items: center;
     padding: 0.6875rem;
     border-radius: 0.625rem;
     box-shadow: 0px 8px 8px 0px rgba(0, 0, 0, 0.25);
     border: 0;
+    color: white;
+    font-size: 1.5rem;
 }
 
 button.select {
-    width: 24rem;
-    height: 5.375rem;
+    width: 20rem;
+    height: 8rem;
     flex-shrink: 0;
     font-family: 'Noto Sans Thai Looped', sans-serif;
     background: #EF9936;
 }
 
 button.small {
-    height: 5.375rem;
+    height: 6rem;
     width: 16rem;
     background: #66705D;
 }
