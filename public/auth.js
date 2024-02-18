@@ -14,78 +14,98 @@ const addUser = firebase.database().ref("user_google")
 var provider = new firebase.auth.GoogleAuthProvider();
 
 firebase.auth().onAuthStateChanged((user) => {
-    if (user) {
-      console.log(user)
+  if (user) {
+    console.log(user)
     //   document.getElementById("userImage").src = user.photoURL;
-    //   document.getElementById("showName").innerHTML = user.displayName;
-      //getList(user);
-    }
-      //setupUI(user)
-  });
+    document.querySelector("#player-name").innerHTML = user.displayName;
+    // read data
+    document.querySelector("#player-winlose").innerHTML = 'Win/Lose: ';
+    addUser.child(user.uid).once("value").then((snapshot) => {
+      snapshot.forEach((data) => {
+        var id = data.key;
+        var id_data = data.val();
+        if (id == "count_round") {
+          document.querySelector("#player-matchs").innerHTML = `Matchs: ${id_data}`;
+        }
+        if (id == "count_win" || id == "count_lose") {
+          switch (id) {
+            case "count_win":
+              document.querySelector("#player-winlose").innerHTML += `${id_data}`;
+              break;
+            case "count_lose":
+              document.querySelector("#player-winlose").innerHTML += `${id_data}/`;
+          }
+        }
+      })
+    });
+    // getList(user);
+  }
+  //setupUI(user)
+});
 
 //const btnLogout = document.querySelector("#logout-button")
 // btnLogout.addEventListener("click", function()
-function logoutUser(){
-    firebase.auth().signOut();
-    console.log("Logout completed")
-    window.location.href = "index.html";
+function logoutUser() {
+  firebase.auth().signOut();
+  console.log("Logout completed")
+  window.location.href = "index.html";
 }
 
 //const loginForm = document.querySelector("#login-button");
 // loginForm.addEventListener("click", loginUser);
 var add_score = true;
 function loginUser(event) {
-    firebase.auth()
-        .signInWithPopup(provider)
-        .then((result) => {
-            /** @type {firebase.auth.OAuthCredential} */
-            var credential = result.credential;
+  firebase.auth()
+    .signInWithPopup(provider)
+    .then((result) => {
+      /** @type {firebase.auth.OAuthCredential} */
+      var credential = result.credential;
 
-            // This gives you a Google Access Token. You can use it to access the Google API.
-            var token = credential.accessToken;
-            // The signed-in user info.
-            var user = result.user;
-            // IdP data available in result.additionalUserInfo.profile.
-            // ...
-            // Add a second document with a generated ID.
-          // database
+      // This gives you a Google Access Token. You can use it to access the Google API.
+      var token = credential.accessToken;
+      // The signed-in user info.
+      var user = result.user;
+      // IdP data available in result.additionalUserInfo.profile.
+      // ...
+      // Add a second document with a generated ID.
+      // database
 
-          const currentUser = firebase.auth().currentUser;
-          addUser.child(currentUser.uid).update({
-              email: currentUser.email,
-              google_id: currentUser.uid,
-              name: currentUser.displayName,
-          })
-          // read data
-          addUser.child(currentUser.uid).once("value").then((snapshot) => {
-            snapshot.forEach((data) => {
-                var id = data.key;
-                var id_data = data.val();
-                if (id == "count_round"){
-                  add_score = false
-                }
-            });
-            // add score win round losr to user
-            if (add_score == true){
-            addUser.child(currentUser.uid).update({
-              count_lose: 0,
-              count_round: 0,
-              count_win: 0,
-            })
-            console.log("add score")
-            }
-          });
-          
-          window.location.href = "profile.html";
-
-        }).catch((error) => {
-            // Handle Errors here.
-            var errorCode = error.code;
-            var errorMessage = error.message;
-            // The email of the user's account used.
-            var email = error.email;
-            // The firebase.auth.AuthCredential type that was used.
-            var credential = error.credential;
-            // ...
+      const currentUser = firebase.auth().currentUser;
+      addUser.child(currentUser.uid).update({
+        email: currentUser.email,
+        google_id: currentUser.uid,
+        name: currentUser.displayName,
+      })
+      // read data
+      addUser.child(currentUser.uid).once("value").then((snapshot) => {
+        snapshot.forEach((data) => {
+          var id = data.key;
+          var id_data = data.val();
+          if (id == "count_round") {
+            add_score = false
+          }
         });
+        // add score win round losr to user
+        if (add_score == true) {
+          addUser.child(currentUser.uid).update({
+            count_lose: 0,
+            count_round: 0,
+            count_win: 0,
+          })
+          console.log("add score")
+        }
+      });
+
+      window.location.href = "profile.html";
+
+    }).catch((error) => {
+      // Handle Errors here.
+      var errorCode = error.code;
+      var errorMessage = error.message;
+      // The email of the user's account used.
+      var email = error.email;
+      // The firebase.auth.AuthCredential type that was used.
+      var credential = error.credential;
+      // ...
+    });
 }
