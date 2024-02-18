@@ -26,8 +26,9 @@
         <div class="page">
             <form action="">
                 <h1>เข้าสู่สมรภูมิ</h1>
-                <button class="select" type="button" id="host-button"><i
+                <button class="select" type="button" id="host-button" onclick="createRoom()"><i
                         class="fa-solid fa-circle-plus"></i><br>สร้างสมรภูมิใหม่</button>
+                <div id="roomCode"></div>
                 <button class="select" type="button" id="join-button"><i
                         class="fa-solid fa-door-open"></i><br>เข้าร่วมสมรภูมิที่มีอยู่</button>
                 <button class="select" type="button" id="random-button"><i
@@ -39,6 +40,7 @@
     </div>
     <script src="script.js"></script>
     <script src="auth.js"></script>
+    <script src="createroom.js"></script>
 </body>
 
 </html>
