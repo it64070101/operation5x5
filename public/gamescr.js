@@ -8,6 +8,11 @@ const firebaseConfigGame = {
     appId: "1:870363256350:web:572187379ae84b0ccd000f",
     measurementId: "G-1KSH1NP49Z"
 };
+
+// //get room code
+// const urlParams = new URLSearchParams(window.location.search);
+// const roomCode = urlParams.get('room');
+
 firebase.initializeApp(firebaseConfigGame);
 const gameDataRef = firebase.database().ref("Game");
 
