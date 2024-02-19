@@ -14,13 +14,18 @@ const addUser = firebase.database().ref("user_google")
 var provider = new firebase.auth.GoogleAuthProvider();
 
 firebase.auth().onAuthStateChanged((user) => {
+  const url = new URL(window.location.href);
+  const pageName = url.pathname.split("/").pop();
   if (user) {
     console.log(user)
     // getList(user);
   }
-  //setupUI(user)
+  else if (!user && pageName != "index.html"){
+    window.location.href = "index.html";
+  }
+  
+  
 });
-
 //const btnLogout = document.querySelector("#logout-button")
 // btnLogout.addEventListener("click", function()
 function logoutUser() {
