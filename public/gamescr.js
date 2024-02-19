@@ -537,12 +537,11 @@ function updateGame(snapshot) {
     else if (playerCount == 2 && isPlay == "start") {
         btnStart.disabled = false;
     }
-    //console.log(snapshot)
+    
     snapshot.forEach((data) => {
         // chack room
         if (data.key == roomCode) {
             const gameInfo = data.val();
-            console.dir(data)
             Object.keys(gameInfo).forEach((key) => {
                 if (key == "table" && isPlay == "play") {
                     if (turn == 2) {
