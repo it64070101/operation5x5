@@ -18,39 +18,41 @@
 <body>
     <div class="container">
         <div id="logo">OPERATION 5x5</div>
-        <div class="container logged-in">
-            <form class="form-inline row">
-                <div class="form-group mb-2 row col-10">
-                    <label for="inputPlayer-x" class="col-form-label col-2">Player X:</label>
-                    <div class="col-10">
-                        <input readonly type="text" class="form-control" id="inputPlayer-x" placeholder="Player X">
+        <div class="page" id="join-game">
+            <div class="container logged-in">
+                <form class="form-inline row">
+                    <div class="form-group mb-2 row col-10">
+                        <label for="inputPlayer-x" class="col-form-label col-2">Player X:</label>
+                        <div class="col-10">
+                            <input readonly type="text" class="form-control" id="inputPlayer-x" placeholder="Player X">
+                        </div>
                     </div>
-                </div>
-                <div class="form-group mb-2 col-2">
-                    <button type="button" id="btnJoin-x" class="btn btn-primary btn-join">Join</button>
-                    <button type="button" id="btnCancel-x"
-                        class="btn btn-secondary btn-cancel-join-game">Cancel</button>
-                </div>
-            </form>
-            <form class="form-inline row">
-                <div class="form-group mb-2 row col-10">
-                    <label for="inputPlayer-o" class="col-form-label col-2">Player O:</label>
-                    <div class="col-10">
-                        <input readonly type="text" class="form-control" id="inputPlayer-o" placeholder="Player O">
+                    <div class="form-group mb-2 col-2">
+                        <button type="button" id="btnJoin-x" class="btn btn-primary btn-join">Join</button>
+                        <button type="button" id="btnCancel-x"
+                            class="btn btn-secondary btn-cancel-join-game">Cancel</button>
                     </div>
-                </div>
-                <div class="form-group mb-2 col-2">
-                    <button type="button" id="btnJoin-o" class="btn btn-primary btn-join">Join</button>
-                    <button type="button" id="btnCancel-o"
-                        class="btn btn-secondary btn-cancel-join-game">Cancel</button>
-                </div>
-            </form>
+                </form>
+                <form class="form-inline row">
+                    <div class="form-group mb-2 row col-10">
+                        <label for="inputPlayer-o" class="col-form-label col-2">Player O:</label>
+                        <div class="col-10">
+                            <input readonly type="text" class="form-control" id="inputPlayer-o" placeholder="Player O">
+                        </div>
+                    </div>
+                    <div class="form-group mb-2 col-2">
+                        <button type="button" id="btnJoin-o" class="btn btn-primary btn-join">Join</button>
+                        <button type="button" id="btnCancel-o"
+                            class="btn btn-secondary btn-cancel-join-game">Cancel</button>
+                    </div>
+                </form>
+            </div>
+            <div class="container d-flex justify-content-center mb-2">
+                <button type="button" id="btnStartGame" class="btn btn-success mx-1 logged-in">START GAME</button>
+                <button type="button" id="btnTerminateGame" class="btn btn-warning mx-1 logged-in">END GAME</button>
+            </div>
         </div>
-        <div class="container d-flex justify-content-center mb-2">
-            <button type="button" id="btnStartGame" class="btn btn-success mx-1 logged-in">START GAME</button>
-            <button type="button" id="btnTerminateGame" class="btn btn-warning mx-1 logged-in">END GAME</button>
-        </div>
-        <div class="page">
+        <div class="page" id="play-game">
             <div id="main">
                 <h1 id="player-turn">Player X Turn</h1>
                 <br><br>

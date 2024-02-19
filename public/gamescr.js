@@ -410,83 +410,89 @@ function updateGame(snapshot) {
 
     snapshot.forEach((data) => {
         // chack room
-        if (data.key == roomCode){
-        const gameInfo = data.val();
-        Object.keys(gameInfo).forEach((key) => {
-            if (key == "start") {
-                isPlay = gameInfo[key]
-            }
-        })
-    }
+        if (data.key == roomCode) {
+            const gameInfo = data.val();
+            Object.keys(gameInfo).forEach((key) => {
+                if (key == "start") {
+                    isPlay = gameInfo[key]
+                }
+            })
+        }
     })
+
+    if (isPlay) {
+        document.getElementById("play-game").style.display = "block";
+    }
+    else if (!isPlay) {
+        document.getElementById("play-game").style.display = "none";
+    }
 
     snapshot.forEach((data) => {
         // chack room
-        if (data.key == roomCode){
-        const gameInfo = data.val();
-        Object.keys(gameInfo).forEach((key) => {
-            if (key == "turn" && isPlay) {
-                playerTurn = gameInfo[key];
-                if (playerTurn == "x") {
-                    turn = 1;
+        if (data.key == roomCode) {
+            const gameInfo = data.val();
+            Object.keys(gameInfo).forEach((key) => {
+                if (key == "turn" && isPlay) {
+                    playerTurn = gameInfo[key];
+                    if (playerTurn == "x") {
+                        turn = 1;
+                    }
+                    else if (playerTurn == "o") {
+                        turn = 2;
+                    }
                 }
-                else if (playerTurn == "o") {
-                    turn = 2;
-                }
-            }
-        })
-    }
+            })
+        }
     })
 
     document.getElementById("player-turn").innerHTML = "Player " + playerTurn + " Turn";
 
     snapshot.forEach((data) => {
         // chack room
-        if (data.key == roomCode){
-        const gameInfo = data.val();
-        Object.keys(gameInfo).forEach((key) => {
-            if (key == "table") {
-                tttdata = gameInfo[key];
-                render(gameInfo[key]);
-            }
-        })
+        if (data.key == roomCode) {
+            const gameInfo = data.val();
+            Object.keys(gameInfo).forEach((key) => {
+                if (key == "table") {
+                    tttdata = gameInfo[key];
+                    render(gameInfo[key]);
+                }
+            })
         }
     })
 
-    enableAll();
+    disabledAll();
 
     snapshot.forEach((data) => {
         // chack room
-        if (data.key == roomCode){
+        if (data.key == roomCode) {
             const gameInfo = data.val();
-        Object.keys(gameInfo).forEach((key) => {
-            switch (key) {
-                case "user-x-email":
-                    document.getElementById("inputPlayer-x").value = gameInfo[key];
-                    document.querySelector("#btnJoin-x").disabled = true;
-                    if (firebase.auth().currentUser.email == gameInfo[key]) {
-                        btnJoins.forEach((btnJoin) => btnJoin.disabled = true);
-                        if (playerTurn == "o") {
-                            disabledAll();
+            Object.keys(gameInfo).forEach((key) => {
+                switch (key) {
+                    case "user-x-email":
+                        document.getElementById("inputPlayer-x").value = gameInfo[key];
+                        document.querySelector("#btnJoin-x").disabled = true;
+                        if (firebase.auth().currentUser.email == gameInfo[key]) {
+                            btnJoins.forEach((btnJoin) => btnJoin.disabled = true);
+                            if (playerTurn == "x" && isPlay) {
+                                enableAll();
+                            }
                         }
-                    }
-                    playerCount++;
-                    break;
-                case "user-o-email":
-                    document.getElementById("inputPlayer-o").value = gameInfo[key];
-                    document.querySelector("#btnJoin-o").disabled = true;
-                    if (firebase.auth().currentUser.email == gameInfo[key]) {
-                        btnJoins.forEach((btnJoin) => btnJoin.disabled = true);
-                        if (playerTurn == "x") {
-                            disabledAll();
+                        playerCount++;
+                        break;
+                    case "user-o-email":
+                        document.getElementById("inputPlayer-o").value = gameInfo[key];
+                        document.querySelector("#btnJoin-o").disabled = true;
+                        if (firebase.auth().currentUser.email == gameInfo[key]) {
+                            btnJoins.forEach((btnJoin) => btnJoin.disabled = true);
+                            if (playerTurn == "o" && isPlay) {
+                                enableAll();
+                            }
                         }
-                    }
-                    playerCount++;
-                    break;
-            }
-        })
+                        playerCount++;
+                        break;
+                }
+            })
         }
-        
     })
 
     if (isPlay) {
@@ -496,28 +502,25 @@ function updateGame(snapshot) {
     else if (playerCount == 2 && !isPlay) {
         btnStart.disabled = false;
     }
-    if (!isPlay) {
-        disabledAll();
-    }
     //console.log(snapshot)
     snapshot.forEach((data) => {
         // chack room
-        if (data.key == roomCode){
-        const gameInfo = data.val();
-        console.dir(data)
-        Object.keys(gameInfo).forEach((key) => {
-            if (key == "table") {
-                if (turn == 2) {
-                    checkX();
-                    checkY();
+        if (data.key == roomCode) {
+            const gameInfo = data.val();
+            console.dir(data)
+            Object.keys(gameInfo).forEach((key) => {
+                if (key == "table") {
+                    if (turn == 2) {
+                        checkX();
+                        checkY();
+                    }
+                    else if (turn == 1) {
+                        checkY();
+                        checkX();
+                    }
                 }
-                else if (turn == 1) {
-                    checkY();
-                    checkX();
-                }
-            }
-        })
-    }
+            })
+        }
     })
 }
 
