@@ -9,9 +9,9 @@ const firebaseConfigGame = {
     measurementId: "G-1KSH1NP49Z"
 };
 
-// //get room code
-// const urlParams = new URLSearchParams(window.location.search);
-// const roomCode = urlParams.get('room');
+//get room code
+const urlParams = new URLSearchParams(window.location.search);
+const roomCode = urlParams.get('room');
 
 firebase.initializeApp(firebaseConfigGame);
 const gameDataRef = firebase.database().ref("Game");
@@ -331,14 +331,14 @@ function run(from) {
         document.getElementById("bot-but").disabled = false;
 
         if (turn == 1) {
-            gameDataRef.child("game-1").update({
+            gameDataRef.child(roomCode).update({
                 turn: "o",
                 table: tttdata
             });
         }
         else if (turn == 2) {
             turn = 1;
-            gameDataRef.child("game-1").update({
+            gameDataRef.child(roomCode).update({
                 turn: "x",
                 table: tttdata
             });
@@ -357,7 +357,7 @@ function joinGame(event) {
         if (playerForm.value == "") {
             let tmpTD = `user-${player}-id`;
             let tmpEmail = `user-${player}-email`;
-            gameDataRef.child("game-1").update({
+            gameDataRef.child(roomCode).update({
                 [tmpTD]: currentUser.uid,
                 [tmpEmail]: currentUser.email
             });
@@ -369,7 +369,7 @@ function joinGame(event) {
 
 function startGame() {
     reset();
-    gameDataRef.child("game-1").update({
+    gameDataRef.child(roomCode).update({
         start: true,
         turn: "x",
         table: [
@@ -383,7 +383,7 @@ function startGame() {
 }
 
 function endGame() {
-    gameDataRef.child("game-1").update({
+    gameDataRef.child(roomCode).update({
         start: false,
     });
 }
@@ -391,6 +391,7 @@ function endGame() {
 let playerCount;
 
 gameDataRef.on("value", (snapshot) => {
+    //console.log(snapshot)
     updateGame(snapshot);
 })
 
@@ -408,15 +409,20 @@ function updateGame(snapshot) {
     let isPlay
 
     snapshot.forEach((data) => {
+        // chack room
+        if (data.key == roomCode){
         const gameInfo = data.val();
         Object.keys(gameInfo).forEach((key) => {
             if (key == "start") {
                 isPlay = gameInfo[key]
             }
         })
+    }
     })
 
     snapshot.forEach((data) => {
+        // chack room
+        if (data.key == roomCode){
         const gameInfo = data.val();
         Object.keys(gameInfo).forEach((key) => {
             if (key == "turn" && isPlay) {
@@ -429,11 +435,14 @@ function updateGame(snapshot) {
                 }
             }
         })
+    }
     })
 
     document.getElementById("player-turn").innerHTML = "Player " + playerTurn + " Turn";
 
     snapshot.forEach((data) => {
+        // chack room
+        if (data.key == roomCode){
         const gameInfo = data.val();
         Object.keys(gameInfo).forEach((key) => {
             if (key == "table") {
@@ -441,12 +450,15 @@ function updateGame(snapshot) {
                 render(gameInfo[key]);
             }
         })
+        }
     })
 
     enableAll();
 
     snapshot.forEach((data) => {
-        const gameInfo = data.val();
+        // chack room
+        if (data.key == roomCode){
+            const gameInfo = data.val();
         Object.keys(gameInfo).forEach((key) => {
             switch (key) {
                 case "user-x-email":
@@ -473,6 +485,8 @@ function updateGame(snapshot) {
                     break;
             }
         })
+        }
+        
     })
 
     if (isPlay) {
@@ -485,9 +499,12 @@ function updateGame(snapshot) {
     if (!isPlay) {
         disabledAll();
     }
-
+    //console.log(snapshot)
     snapshot.forEach((data) => {
+        // chack room
+        if (data.key == roomCode){
         const gameInfo = data.val();
+        console.dir(data)
         Object.keys(gameInfo).forEach((key) => {
             if (key == "table") {
                 if (turn == 2) {
@@ -500,6 +517,7 @@ function updateGame(snapshot) {
                 }
             }
         })
+    }
     })
 }
 
@@ -517,8 +535,8 @@ function cancelJoin(event) {
         if (playerForm.value && playerForm.value === currentUser.email) {
             let tmpTD = `user-${player}-id`;
             let tmpEmail = `user-${player}-email`;
-            gameDataRef.child("game-1").child(tmpTD).remove();
-            gameDataRef.child("game-1").child(tmpEmail).remove();
+            gameDataRef.child(roomCode).child(tmpTD).remove();
+            gameDataRef.child(roomCode).child(tmpEmail).remove();
             console.log(`delete on id: ${currentUser.uid}`);
             document.querySelector(`#btnJoin-${player}`).disabled = false;
         }
