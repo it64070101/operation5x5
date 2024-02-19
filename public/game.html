@@ -49,7 +49,6 @@
             </div>
             <div class="container d-flex justify-content-center mb-2">
                 <button type="button" id="btnStartGame" class="btn btn-success mx-1 logged-in">START GAME</button>
-                <button type="button" id="btnTerminateGame" class="btn btn-warning mx-1 logged-in">END GAME</button>
             </div>
         </div>
         <div class="page" id="play-game">
@@ -104,9 +103,13 @@
                     <div></div>
                 </div>
                 <br>
-                <button class="but" onclick="reset()"><i class="fa-solid fa-arrow-rotate-right"></i></button>
+                <button type="button" id="btnTerminateGame" class="btn btn-warning mx-1 logged-in">END GAME</button>
             </div>
         </div>
+    </div>
+    <div class="page" id="end-game">
+        <h1 id="winnerText"></h1>
+        <button type="button" id="btnAfterGame">START AGAIN</button>
     </div>
 
     <!-- JavaScript file included -->
