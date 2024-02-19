@@ -21,8 +21,10 @@ btnJoins.forEach((btnJoin) => btnJoin.addEventListener("click", joinGame));
 
 const btnTerminate = document.getElementById("btnTerminateGame");
 const btnStart = document.getElementById("btnStartGame");
+const btnAfter = document.getElementById("btnAfterGame");
 btnStart.addEventListener("click", startGame);
 btnTerminate.addEventListener("click", endGame);
+btnAfter.addEventListener("click", afterGame);
 
 let tttdata = [
     [0, 0, 0, 0, 0],
@@ -67,12 +69,11 @@ function lock(win) {
         allcell[i].disabled = true;
     }
     if (win == 1) {
-        document.getElementById("player-turn").innerHTML = "Player X win."
+        endGame("x");
     }
     else {
-        document.getElementById("player-turn").innerHTML = "Player O win."
+        endGame("o");
     }
-    endGame();
 }
 
 function enableAll() {
@@ -370,7 +371,7 @@ function joinGame(event) {
 function startGame() {
     reset();
     gameDataRef.child(roomCode).update({
-        start: true,
+        start: "play",
         turn: "x",
         table: [
             [0, 0, 0, 0, 0],
@@ -378,13 +379,30 @@ function startGame() {
             [0, 0, 0, 0, 0],
             [0, 0, 0, 0, 0],
             [0, 0, 0, 0, 0]
-        ]
+        ],
+        winner: ""
     });
 }
 
-function endGame() {
+function endGame(winner) {
     gameDataRef.child(roomCode).update({
-        start: false,
+        start: "end",
+        winner: winner
+    });
+}
+
+function afterGame() {
+    //You can add score and round here
+    gameDataRef.child(roomCode).update({
+        start: "start",
+        table: [
+            [0, 0, 0, 0, 0],
+            [0, 0, 0, 0, 0],
+            [0, 0, 0, 0, 0],
+            [0, 0, 0, 0, 0],
+            [0, 0, 0, 0, 0]
+        ],
+        winner: ""
     });
 }
 
@@ -420,11 +438,20 @@ function updateGame(snapshot) {
         }
     })
 
-    if (isPlay) {
-        document.getElementById("play-game").style.display = "block";
-    }
-    else if (!isPlay) {
+    if (isPlay == "start") {
+        document.getElementById("join-game").style.display = "block";
         document.getElementById("play-game").style.display = "none";
+        document.getElementById("end-game").style.display = "none";
+    }
+    else if (isPlay == "play") {
+        document.getElementById("join-game").style.display = "none";
+        document.getElementById("play-game").style.display = "block";
+        document.getElementById("end-game").style.display = "none";
+    }
+    else if (isPlay == "end") {
+        document.getElementById("join-game").style.display = "none";
+        document.getElementById("play-game").style.display = "none";
+        document.getElementById("end-game").style.display = "block";
     }
 
     snapshot.forEach((data) => {
@@ -432,7 +459,7 @@ function updateGame(snapshot) {
         if (data.key == roomCode) {
             const gameInfo = data.val();
             Object.keys(gameInfo).forEach((key) => {
-                if (key == "turn" && isPlay) {
+                if (key == "turn" && isPlay == "play") {
                     playerTurn = gameInfo[key];
                     if (playerTurn == "x") {
                         turn = 1;
@@ -473,7 +500,7 @@ function updateGame(snapshot) {
                         document.querySelector("#btnJoin-x").disabled = true;
                         if (firebase.auth().currentUser.email == gameInfo[key]) {
                             btnJoins.forEach((btnJoin) => btnJoin.disabled = true);
-                            if (playerTurn == "x" && isPlay) {
+                            if (playerTurn == "x" && isPlay == "play") {
                                 enableAll();
                             }
                         }
@@ -484,22 +511,30 @@ function updateGame(snapshot) {
                         document.querySelector("#btnJoin-o").disabled = true;
                         if (firebase.auth().currentUser.email == gameInfo[key]) {
                             btnJoins.forEach((btnJoin) => btnJoin.disabled = true);
-                            if (playerTurn == "o" && isPlay) {
+                            if (playerTurn == "o" && isPlay == "play") {
                                 enableAll();
                             }
                         }
                         playerCount++;
+                        break;
+                    case "winner":
+                        if (gameInfo[key] == "x" || gameInfo[key] == "o") {
+                            document.getElementById("winnerText").innerText = "Player " + gameInfo[key] + " is the winner.";
+                        }
+                        else {
+                            document.getElementById("winnerText").innerText = "No winner.";
+                        }
                         break;
                 }
             })
         }
     })
 
-    if (isPlay) {
+    if (isPlay == "play") {
         btnTerminate.disabled = false;
         document.querySelectorAll(".btn-cancel-join-game").forEach((btnCancel) => btnCancel.disabled = true);
     }
-    else if (playerCount == 2 && !isPlay) {
+    else if (playerCount == 2 && isPlay == "start") {
         btnStart.disabled = false;
     }
     //console.log(snapshot)
@@ -509,7 +544,7 @@ function updateGame(snapshot) {
             const gameInfo = data.val();
             console.dir(data)
             Object.keys(gameInfo).forEach((key) => {
-                if (key == "table") {
+                if (key == "table" && isPlay == "play") {
                     if (turn == 2) {
                         checkX();
                         checkY();
