@@ -16,9 +16,10 @@ var provider = new firebase.auth.GoogleAuthProvider();
 firebase.auth().onAuthStateChanged((user) => {
   const url = new URL(window.location.href);
   const pageName = url.pathname.split("/").pop();
-  if (user) {
-    console.log(user)
+  if (user && (pageName == "index.html" || pageName == "")) {
+    // console.log(user)
     // getList(user);
+    window.location.href = "profile.html";
   }
   else if (!user && pageName != "index.html"){
     window.location.href = "index.html";
