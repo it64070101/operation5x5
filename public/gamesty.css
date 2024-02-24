@@ -52,6 +52,12 @@ p {
 	margin: auto;
 }
 
+/* Change input arrow button style when disabled.*/
+.but:disabled,
+.but[disabled] {
+	background-color: red;
+}
+
 #top-but {
 	width: 100%;
 }
