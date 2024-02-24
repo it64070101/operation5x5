@@ -12,6 +12,7 @@ setLinkButton("tutorial-button", "guide.html");
 setLinkButton("play-button", "playmode.html");
 // bind for save tutorial time
 //setLinkButton("to-profile-button", "profile.html");
+setLinkButton("roomto-profile-button", "profile.html");
 setLinkButton("quit-button", "profile.html");
 
 

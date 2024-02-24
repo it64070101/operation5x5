@@ -10,6 +10,7 @@ function createRoom() {
     const createRoom = firebase.database().ref("Game")
     createRoom.child(roomCode).update({
         start: "start",
+        matchmaking: true,
     });
     window.location.href = `game.html?room=${roomCode}`;
 }
