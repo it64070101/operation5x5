@@ -37,6 +37,7 @@ let turn = 1;
 let select = 0;
 let selectrow = 0;
 let selectcol = 0;
+let theWinner;
 
 function reset() {
     for (let i = 0; i < 5; i++) {
@@ -60,20 +61,6 @@ function reset() {
     selectrow = 0;
     selectcol = 0;
     document.getElementById("player-turn").innerHTML = "Player X Turn";
-}
-
-function lock(win) {
-    let allcell = document.getElementsByClassName("cell");
-    let celllen = allcell.length;
-    for (let i = 0; i < celllen; i++) {
-        allcell[i].disabled = true;
-    }
-    if (win == 1) {
-        endGame("x");
-    }
-    else {
-        endGame("o");
-    }
 }
 
 function enableAll() {
@@ -136,7 +123,7 @@ function checkX() {
             if (tttdata[i][j] == 1) {
                 countwinX++;
                 if (countwinX == 5) {
-                    lock(1);
+                    theWinner = "x";
                 }
             }
             else {
@@ -150,7 +137,7 @@ function checkX() {
             if (tttdata[i][j] == 1) {
                 countwinX++;
                 if (countwinX == 5) {
-                    lock(1);
+                    theWinner = "x";
                 }
             }
             else {
@@ -163,7 +150,7 @@ function checkX() {
         if (tttdata[i][j] == 1) {
             countwinX++;
             if (countwinX == 5) {
-                lock(1);
+                theWinner = "x";
             }
         }
         else {
@@ -175,7 +162,7 @@ function checkX() {
         if (tttdata[i][j] == 1) {
             countwinX++;
             if (countwinX == 5) {
-                lock(1);
+                theWinner = "x";
             }
         }
         else {
@@ -191,7 +178,7 @@ function checkY() {
             if (tttdata[i][j] == 2) {
                 countwinY++;
                 if (countwinY == 5) {
-                    lock(2);
+                    theWinner = "o";
                 }
             }
             else {
@@ -205,7 +192,7 @@ function checkY() {
             if (tttdata[i][j] == 2) {
                 countwinY++;
                 if (countwinY == 5) {
-                    lock(2);
+                    theWinner = "o";
                 }
             }
             else {
@@ -218,7 +205,7 @@ function checkY() {
         if (tttdata[i][j] == 2) {
             countwinY++;
             if (countwinY == 5) {
-                lock(2);
+                theWinner = "o";
             }
         }
         else {
@@ -230,7 +217,7 @@ function checkY() {
         if (tttdata[i][j] == 2) {
             countwinY++;
             if (countwinY == 5) {
-                lock(2);
+                theWinner = "o";
             }
         }
         else {
@@ -332,16 +319,38 @@ function run(from) {
         document.getElementById("bot-but").disabled = false;
 
         if (turn == 1) {
+            let state = "play";
+            theWinner = "";
+            checkX();
+            checkY();
+            if (theWinner != "") {
+                // To sun
+                // You can update player score and round here.
+                // Use theWinner to check who is win.
+                state = "end";
+            }
             gameDataRef.child(roomCode).update({
                 turn: "o",
-                table: tttdata
+                table: tttdata,
+                winner: theWinner,
+                start: state
             });
         }
         else if (turn == 2) {
-            turn = 1;
+            let state = "play";
+            theWinner = "";
+            checkY();
+            checkX();
+            if (theWinner != "") {
+                // To sun
+                // You need to add the same update here too.
+                state = "end";
+            }
             gameDataRef.child(roomCode).update({
                 turn: "x",
-                table: tttdata
+                table: tttdata,
+                winner: theWinner,
+                start: state
             });
         }
     }
@@ -384,15 +393,13 @@ function startGame() {
     });
 }
 
-function endGame(winner) {
+function endGame() {
     gameDataRef.child(roomCode).update({
-        start: "end",
-        winner: winner
+        start: "end"
     });
 }
 
 function afterGame() {
-    //You can add score and round here
     gameDataRef.child(roomCode).update({
         start: "start",
         table: [
@@ -472,7 +479,9 @@ function updateGame(snapshot) {
         }
     })
 
-    document.getElementById("player-turn").innerHTML = "Player " + playerTurn + " Turn";
+    if (isPlay == "play") {
+        document.getElementById("player-turn").innerHTML = "Player " + playerTurn.toUpperCase() + " Turn";
+    }
 
     snapshot.forEach((data) => {
         // chack room
@@ -519,7 +528,7 @@ function updateGame(snapshot) {
                         break;
                     case "winner":
                         if (gameInfo[key] == "x" || gameInfo[key] == "o") {
-                            document.getElementById("winnerText").innerText = "Player " + gameInfo[key] + " is the winner.";
+                            document.getElementById("winnerText").innerText = "Player " + gameInfo[key].toUpperCase() + " is the winner.";
                         }
                         else {
                             document.getElementById("winnerText").innerText = "No winner.";
@@ -537,25 +546,6 @@ function updateGame(snapshot) {
     else if (playerCount == 2 && isPlay == "start") {
         btnStart.disabled = false;
     }
-    
-    snapshot.forEach((data) => {
-        // chack room
-        if (data.key == roomCode) {
-            const gameInfo = data.val();
-            Object.keys(gameInfo).forEach((key) => {
-                if (key == "table" && isPlay == "play") {
-                    if (turn == 2) {
-                        checkX();
-                        checkY();
-                    }
-                    else if (turn == 1) {
-                        checkY();
-                        checkX();
-                    }
-                }
-            })
-        }
-    })
 }
 
 const btnCancelsJoins = document.querySelectorAll(".btn-cancel-join-game");
