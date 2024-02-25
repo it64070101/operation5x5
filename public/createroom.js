@@ -16,7 +16,12 @@ function createRoom() {
         [tmpEmail]: currentUser.email,
         matchmaking: true
     });
-    window.location.href = `game.html?room=${roomCode}`;
+    SHARoom(roomCode)
+    console.log(roomCode)
+    // เพิ่มข้อความที่ต้องการแฮช
+
+
+
 }
 
 function generateRoomCode() {
@@ -27,4 +32,12 @@ function generateRoomCode() {
         result += characters.charAt(Math.floor(Math.random() * characters.length));
     }
     return result;
+}
+function SHARoom(roomCode){
+        // สร้างค่าแฮช SHA-256
+        const roomCodehash = CryptoJS.SHA256(roomCode);
+
+        // แปลงค่าแฮชเป็นรหัสฐาน 16 (Hex)
+        const roomCodehashInHex = roomCodehash.toString(CryptoJS.enc.Hex);
+        window.location.href = `game.html?room=${roomCodehashInHex}`;
 }

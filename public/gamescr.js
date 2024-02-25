@@ -9,12 +9,18 @@ const firebaseConfigGame = {
     measurementId: "G-1KSH1NP49Z"
 };
 
-//get room code
-const urlParams = new URLSearchParams(window.location.search);
-const roomCode = urlParams.get('room');
-
 firebase.initializeApp(firebaseConfigGame);
 const gameDataRef = firebase.database().ref("Game");
+// get room code
+const urlParams = new URLSearchParams(window.location.search);
+let roomCodeHex = urlParams.get('room');
+let roomCode = ""
+var wrongRoom = true;
+//set new code room
+checkwrongRoom()
+    .then((roomCodeValue ) => {
+        console.log("Room Code:", roomCodeValue);
+        roomCode = roomCodeValue;
 
 const btnJoins = document.querySelectorAll(".btn-join");
 btnJoins.forEach((btnJoin) => btnJoin.addEventListener("click", joinGame));
@@ -324,9 +330,9 @@ function run(from) {
             checkX();
             checkY();
             if (theWinner != "") {
-                // To sun
-                // You can update player score and round here.
-                // Use theWinner to check who is win.
+
+                //function add user Score
+                addUserScore(theWinner)
                 state = "end";
             }
             gameDataRef.child(roomCode).update({
@@ -342,8 +348,9 @@ function run(from) {
             checkY();
             checkX();
             if (theWinner != "") {
-                // To sun
-                // You need to add the same update here too.
+                
+                //function add user Score
+                addUserScore(theWinner)
                 state = "end";
             }
             gameDataRef.child(roomCode).update({
@@ -571,3 +578,9 @@ function cancelJoin(event) {
         }
     }
 }
+})
+.catch((error) => {
+    console.error(error);
+    // จัดการข้อผิดพลาดที่เกิดขึ้น
+    //window.location.href = `playmode.html`;
+});

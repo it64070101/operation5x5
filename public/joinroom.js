@@ -62,7 +62,8 @@ function submitForm() {
             const rooms = snapshot.val();
             
             if (roomCode in rooms){
-                window.location.href = `game.html?room=${roomCode}`;
+                
+                SHARoom(roomCode)
             }
             // ทำสิ่งที่คุณต้องการกับข้อมูลห้องที่ได้รับ
         });
