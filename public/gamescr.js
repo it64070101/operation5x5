@@ -433,6 +433,8 @@ function updateGame(snapshot) {
     let playerTurn;
     let isPlay
 
+    document.getElementById("showRoomCode").innerText = "Room code : " + roomCode;
+
     snapshot.forEach((data) => {
         // chack room
         if (data.key == roomCode) {
