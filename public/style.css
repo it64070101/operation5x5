@@ -39,6 +39,15 @@ button.small {
     background: #66705D;
 }
 
+button.gameBtn {
+    background: #66705D;
+}
+
+button.gameBtn:disabled,
+button.gameBtn[disabled] {
+	opacity: 50%;
+}
+
 button:hover {
     cursor: pointer;
 }

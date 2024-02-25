@@ -31,11 +31,11 @@
                             <input readonly type="text" class="form-control" id="inputPlayer-x" placeholder="Player X">
                         </div>
                     </div>
-                    <div class="form-group mb-2 col-2">
-                        <button type="button" id="btnJoin-x" class="btn btn-primary btn-join">Join</button>
+                    <!-- <div class="form-group mb-2 col-2">
+                        <button type="button" id="btnJoin-x" class="btn btn-primary btn-join gameBtn">Join</button>
                         <button type="button" id="btnCancel-x"
-                            class="btn btn-secondary btn-cancel-join-game">Cancel</button>
-                    </div>
+                            class="btn btn-secondary btn-cancel-join-game gameBtn">Cancel</button>
+                    </div> -->
                 </form>
                 <form class="form-inline row">
                     <div class="form-group mb-2 row col-10">
@@ -44,15 +44,19 @@
                             <input readonly type="text" class="form-control" id="inputPlayer-o" placeholder="Player O">
                         </div>
                     </div>
-                    <div class="form-group mb-2 col-2">
-                        <button type="button" id="btnJoin-o" class="btn btn-primary btn-join">Join</button>
+                    <!-- <div class="form-group mb-2 col-2">
+                        <button type="button" id="btnJoin-o" class="btn btn-primary btn-join gameBtn">Join</button>
                         <button type="button" id="btnCancel-o"
-                            class="btn btn-secondary btn-cancel-join-game">Cancel</button>
-                    </div>
+                            class="btn btn-secondary btn-cancel-join-game gameBtn">Cancel</button>
+                    </div> -->
                 </form>
             </div>
             <div class="container d-flex justify-content-center mb-2">
-                <button type="button" id="btnStartGame" class="btn btn-success mx-1">START GAME</button>
+                <button type="button" id="btnSwitchPlayer" class="btn btn-success mx-1 gameBtn">SWITCH</button>
+            </div>
+            <div class="container d-flex justify-content-center mb-2">
+                <button type="button" id="btnStartGame" class="btn btn-success mx-1 gameBtn">START GAME</button>
+                <button type="button" id="btnExitGame" class="btn btn-success mx-1 gameBtn">EXIT GAME</button>
             </div>
         </div>
         <div class="page" id="play-game">
@@ -107,13 +111,13 @@
                     <div></div>
                 </div>
                 <br>
-                <button type="button" id="btnTerminateGame" class="btn btn-warning mx-1">END GAME</button>
+                <button type="button" id="btnTerminateGame" class="btn btn-warning mx-1 gameBtn">END GAME</button>
             </div>
         </div>
     </div>
     <div class="page" id="end-game">
         <h1 id="winnerText"></h1>
-        <button type="button" id="btnAfterGame">START AGAIN</button>
+        <button type="button" id="btnAfterGame" class="gameBtn">START AGAIN</button>
     </div>
 
     <!-- JavaScript file included -->
