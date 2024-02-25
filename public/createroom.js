@@ -14,7 +14,8 @@ function createRoom() {
     createRoom.child(roomCode).update({
         start: "start",
         [tmpTD]: currentUser.uid,
-        [tmpEmail]: currentUser.email
+        [tmpEmail]: currentUser.email,
+        matchmaking: true
     });
     window.location.href = `game.html?room=${roomCode}`;
 }
