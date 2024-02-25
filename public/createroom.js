@@ -1,15 +1,20 @@
 
 function createRoom() {
     // สร้างโค้ดสำหรับห้อง (สร้างโค้ดแบบสุ่มเป็นตัวอย่าง)
-     // สร้างโค้ดแบบสุ่ม
-     const roomCode = generateRoomCode();
-     const roomURL = window.location.href + '?room=' + roomCode; // สร้าง URL ที่รวมโค้ดห้อง
+    // สร้างโค้ดแบบสุ่ม
+    const roomCode = generateRoomCode();
+    const roomURL = window.location.href + '?room=' + roomCode; // สร้าง URL ที่รวมโค้ดห้อง
     document.getElementById('roomCode').innerHTML = 'โค้ดห้องของคุณ: ' + roomCode; // แสดงโค้ดห้องในหน้าเว็บ
     alert('ห้องของคุณถูกสร้างเรียบร้อยแล้ว! โค้ดของคุณคือ: ' + roomCode); // แสดง Alert พร้อมโค้ดห้อง
     console.log(roomURL);
     const createRoom = firebase.database().ref("Game")
+    const currentUser = firebase.auth().currentUser;
+    let tmpTD = `user-x-id`;
+    let tmpEmail = `user-x-email`;
     createRoom.child(roomCode).update({
         start: "start",
+        [tmpTD]: currentUser.uid,
+        [tmpEmail]: currentUser.email
     });
     window.location.href = `game.html?room=${roomCode}`;
 }
