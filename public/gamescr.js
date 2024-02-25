@@ -23,17 +23,19 @@ checkwrongRoom()
         console.log("Room Code:", roomCodeValue);
         roomCode = roomCodeValue;
 
-        const btnJoins = document.querySelectorAll(".btn-join");
-        btnJoins.forEach((btnJoin) => btnJoin.addEventListener("click", joinGame));
+        // const btnJoins = document.querySelectorAll(".btn-join");
+        // btnJoins.forEach((btnJoin) => btnJoin.addEventListener("click", joinGame));
 
         const btnTerminate = document.getElementById("btnTerminateGame");
         const btnStart = document.getElementById("btnStartGame");
         const btnAfter = document.getElementById("btnAfterGame");
         const btnExit = document.getElementById("btnExitGame");
+        const btnSwitch = document.getElementById("btnSwitchPlayer");
         btnStart.addEventListener("click", startGame);
         btnTerminate.addEventListener("click", endGame);
         btnAfter.addEventListener("click", afterGame);
         btnExit.addEventListener("click", exitRoom);
+        btnSwitch.addEventListener("click", switchPlayer);
 
         let tttdata = [
             [0, 0, 0, 0, 0],
@@ -235,26 +237,26 @@ checkwrongRoom()
             }
         }
 
-        function joinGame(event) {
-            const currentUser = firebase.auth().currentUser;
-            console.log("[Join] Current user", currentUser);
-            if (currentUser) {
-                const btnJoinID = event.currentTarget.getAttribute("id");
-                const player = btnJoinID[btnJoinID.length - 1];
+        // function joinGame(event) {
+        //     const currentUser = firebase.auth().currentUser;
+        //     console.log("[Join] Current user", currentUser);
+        //     if (currentUser) {
+        //         const btnJoinID = event.currentTarget.getAttribute("id");
+        //         const player = btnJoinID[btnJoinID.length - 1];
 
-                const playerForm = document.getElementById(`inputPlayer-${player}`);
-                if (playerForm.value == "") {
-                    let tmpTD = `user-${player}-id`;
-                    let tmpEmail = `user-${player}-email`;
-                    gameDataRef.child(roomCode).update({
-                        [tmpTD]: currentUser.uid,
-                        [tmpEmail]: currentUser.email
-                    });
-                    console.log(currentUser.email + " added.");
-                    event.currentTarget.disabled = true;
-                }
-            }
-        }
+        //         const playerForm = document.getElementById(`inputPlayer-${player}`);
+        //         if (playerForm.value == "") {
+        //             let tmpTD = `user-${player}-id`;
+        //             let tmpEmail = `user-${player}-email`;
+        //             gameDataRef.child(roomCode).update({
+        //                 [tmpTD]: currentUser.uid,
+        //                 [tmpEmail]: currentUser.email
+        //             });
+        //             console.log(currentUser.email + " added.");
+        //             event.currentTarget.disabled = true;
+        //         }
+        //     }
+        // }
 
         function startGame() {
             reset();
@@ -304,8 +306,8 @@ checkwrongRoom()
         function updateGame(snapshot) {
             document.getElementById("inputPlayer-x").value = "";
             document.getElementById("inputPlayer-o").value = "";
-            btnJoins.forEach((btnJoin) => btnJoin.disabled = false);
-            document.querySelectorAll(".btn-cancel-join-game").forEach((btnCancel) => btnCancel.disabled = false);
+            // btnJoins.forEach((btnJoin) => btnJoin.disabled = false);
+            // document.querySelectorAll(".btn-cancel-join-game").forEach((btnCancel) => btnCancel.disabled = false);
             btnStart.disabled = true;
             btnTerminate.disabled = true;
             playerCount = 0;
@@ -387,9 +389,9 @@ checkwrongRoom()
                         switch (key) {
                             case "user-x-email":
                                 document.getElementById("inputPlayer-x").value = gameInfo[key];
-                                document.querySelector("#btnJoin-x").disabled = true;
+                                // document.querySelector("#btnJoin-x").disabled = true;
                                 if (firebase.auth().currentUser.email == gameInfo[key]) {
-                                    btnJoins.forEach((btnJoin) => btnJoin.disabled = true);
+                                    // btnJoins.forEach((btnJoin) => btnJoin.disabled = true);
                                     if (playerTurn == "x" && isPlay == "play") {
                                         enableAll();
                                     }
@@ -398,9 +400,9 @@ checkwrongRoom()
                                 break;
                             case "user-o-email":
                                 document.getElementById("inputPlayer-o").value = gameInfo[key];
-                                document.querySelector("#btnJoin-o").disabled = true;
+                                // document.querySelector("#btnJoin-o").disabled = true;
                                 if (firebase.auth().currentUser.email == gameInfo[key]) {
-                                    btnJoins.forEach((btnJoin) => btnJoin.disabled = true);
+                                    // btnJoins.forEach((btnJoin) => btnJoin.disabled = true);
                                     if (playerTurn == "o" && isPlay == "play") {
                                         enableAll();
                                     }
@@ -422,35 +424,38 @@ checkwrongRoom()
 
             if (isPlay == "play") {
                 btnTerminate.disabled = false;
-                document.querySelectorAll(".btn-cancel-join-game").forEach((btnCancel) => btnCancel.disabled = true);
+                // document.querySelectorAll(".btn-cancel-join-game").forEach((btnCancel) => btnCancel.disabled = true);
             }
             else if (playerCount == 2 && isPlay == "start") {
                 btnStart.disabled = false;
             }
-        }
 
-        const btnCancelsJoins = document.querySelectorAll(".btn-cancel-join-game");
-        btnCancelsJoins.forEach((btnCancel) => btnCancel.addEventListener("click", cancelJoin));
-
-        function cancelJoin(event) {
-            const currentUser = firebase.auth().currentUser;
-            console.log("[Cancel] Current user:", currentUser);
-            if (currentUser) {
-                const btnCancelID = event.currentTarget.getAttribute("id");
-                const player = btnCancelID[btnCancelID.length - 1];
-
-                const playerForm = document.getElementById(`inputPlayer-${player}`);
-                if (playerForm.value && playerForm.value === currentUser.email) {
-                    let tmpTD = `user-${player}-id`;
-                    let tmpEmail = `user-${player}-email`;
-                    gameDataRef.child(roomCode).child(tmpTD).remove();
-                    gameDataRef.child(roomCode).child(tmpEmail).remove();
-                    console.log(`delete on id: ${currentUser.uid}`);
-                    document.querySelector(`#btnJoin-${player}`).disabled = false;
-                }
+            if (playerCount == 0) {
+                gameDataRef.child(roomCode).remove();
             }
         }
 
+        // const btnCancelsJoins = document.querySelectorAll(".btn-cancel-join-game");
+        // btnCancelsJoins.forEach((btnCancel) => btnCancel.addEventListener("click", cancelJoin));
+
+        // function cancelJoin(event) {
+        //     const currentUser = firebase.auth().currentUser;
+        //     console.log("[Cancel] Current user:", currentUser);
+        //     if (currentUser) {
+        //         const btnCancelID = event.currentTarget.getAttribute("id");
+        //         const player = btnCancelID[btnCancelID.length - 1];
+
+        //         const playerForm = document.getElementById(`inputPlayer-${player}`);
+        //         if (playerForm.value && playerForm.value === currentUser.email) {
+        //             let tmpTD = `user-${player}-id`;
+        //             let tmpEmail = `user-${player}-email`;
+        //             gameDataRef.child(roomCode).child(tmpTD).remove();
+        //             gameDataRef.child(roomCode).child(tmpEmail).remove();
+        //             console.log(`delete on id: ${currentUser.uid}`);
+        //             document.querySelector(`#btnJoin-${player}`).disabled = false;
+        //         }
+        //     }
+        // }
 
         function exitRoom(event) {
             const currentUser = firebase.auth().currentUser;
@@ -469,6 +474,60 @@ checkwrongRoom()
                         }
                     });
                 });
+                window.location.href = "playmode.html";
+            }
+        }
+
+        function switchPlayer(event) {
+            let saveEmailX;
+            let saveIDX;
+            let saveEmailO;
+            let saveIDO;
+            let keyIDX = `user-x-id`;
+            let keyEmailX = `user-x-email`;
+            let keyIDO = `user-o-id`;
+            let keyEmailO = `user-o-email`;
+            firebase.database().ref('Game/' + roomCode).once('value', (snapshot) => {
+                snapshot.forEach((data) => {
+                    let id = data.key;
+                    let id_data = data.val();
+                    if (id == "user-x-email") {
+                        saveEmailX = id_data;
+                    }
+                    else if (id == "user-o-email") {
+                        saveEmailO = id_data;
+                    }
+                    else if (id == "user-x-id") {
+                        saveIDX = id_data;
+                    }
+                    else if (id == "user-o-id") {
+                        saveIDO = id_data;
+                    }
+                });
+            });
+            if (saveEmailX != undefined && saveEmailO != undefined) {
+                gameDataRef.child(roomCode).update({
+                    [keyIDX]: saveIDO,
+                    [keyEmailX]: saveEmailO,
+                    [keyIDO]: saveIDX,
+                    [keyEmailO]: saveEmailX
+                });
+            }
+            else if (saveEmailX == undefined) {
+                gameDataRef.child(roomCode).update({
+                    [keyIDX]: saveIDO,
+                    [keyEmailX]: saveEmailO
+                });
+                gameDataRef.child(roomCode).child("user-o-email").remove();
+                gameDataRef.child(roomCode).child("user-o-id").remove();
+            }
+            else if (saveEmailO == undefined) {
+                gameDataRef.child(roomCode).update({
+                    [keyIDO]: saveIDX,
+                    [keyEmailO]: saveEmailX
+                });
+                gameDataRef.child(roomCode).child("user-x-email").remove();
+                gameDataRef.child(roomCode).child("user-x-id").remove();
             }
         }
     })

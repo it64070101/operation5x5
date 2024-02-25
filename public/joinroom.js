@@ -41,10 +41,10 @@ function submitForm() {
     // Add your form submission logic here
     firebase.database().ref('Game').once('value', (snapshot) => {
         const rooms = snapshot.val();
+        const selectRoom = firebase.database().ref("Game")
+        const currentUser = firebase.auth().currentUser;
         if (roomCode in rooms) {
-            if (rooms[roomCode]["user-x-email"] == undefined) {
-                const selectRoom = firebase.database().ref("Game")
-                const currentUser = firebase.auth().currentUser;
+            if (rooms[roomCode]["user-x-email"] == undefined && rooms[roomCode]["user-o-email"] != currentUser.email) {
                 let tmpTD = `user-x-id`;
                 let tmpEmail = `user-x-email`;
                 selectRoom.child(roomCode).update({
@@ -52,9 +52,7 @@ function submitForm() {
                     [tmpEmail]: currentUser.email,
                 });
             }
-            else if (rooms[roomCode]["user-o-email"] == undefined) {
-                const selectRoom = firebase.database().ref("Game")
-                const currentUser = firebase.auth().currentUser;
+            else if (rooms[roomCode]["user-o-email"] == undefined && rooms[roomCode]["user-x-email"] != currentUser.email) {
                 let tmpTD = `user-o-id`;
                 let tmpEmail = `user-o-email`;
                 selectRoom.child(roomCode).update({
