@@ -25,7 +25,7 @@ function findMatchmakingRooms() {
         if (roomlist.length > 0) {
         let length =  (roomlist.length)-1;
         randomRoom = getRandomInt(0,length)
-        SHARoom(roomlist[randomRoom])
+        window.location.href = `game.html?room=${(roomlist[randomRoom])}`;
         }
         else {
             //if can't find room let createroom

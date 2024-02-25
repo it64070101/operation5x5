@@ -16,7 +16,8 @@ function createRoom() {
         [tmpEmail]: currentUser.email,
         matchmaking: true
     });
-    SHARoom(roomCode)
+    window.location.href = `game.html?room=${roomCode}`;
+    //SHARoom(roomCode)
     console.log(roomCode)
     // เพิ่มข้อความที่ต้องการแฮช
 

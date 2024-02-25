@@ -63,7 +63,7 @@ function submitForm() {
             
             if (roomCode in rooms){
                 
-                SHARoom(roomCode)
+                window.location.href = `game.html?room=${roomCode}`;
             }
             // ทำสิ่งที่คุณต้องการกับข้อมูลห้องที่ได้รับ
         });

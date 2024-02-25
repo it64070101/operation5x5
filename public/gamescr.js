@@ -13,15 +13,12 @@ firebase.initializeApp(firebaseConfigGame);
 const gameDataRef = firebase.database().ref("Game");
 // get room code
 const urlParams = new URLSearchParams(window.location.search);
-let roomCodeHex = urlParams.get('room');
-let roomCode = ""
+let roomCode = urlParams.get('room');
 var wrongRoom = true;
 //set new code room
-checkwrongRoom()
-    .then((roomCodeValue ) => {
-        console.log("Room Code:", roomCodeValue);
-        roomCode = roomCodeValue;
+checkwrongRoom(roomCode)
 
+console.log("Room Code:", roomCode);
 const btnJoins = document.querySelectorAll(".btn-join");
 btnJoins.forEach((btnJoin) => btnJoin.addEventListener("click", joinGame));
 
@@ -578,9 +575,3 @@ function cancelJoin(event) {
         }
     }
 }
-})
-.catch((error) => {
-    console.error(error);
-    // จัดการข้อผิดพลาดที่เกิดขึ้น
-    //window.location.href = `playmode.html`;
-});
