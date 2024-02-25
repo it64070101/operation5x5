@@ -1,11 +1,11 @@
 function checkwrongRoom() {
     return new Promise((resolve, reject) => {
-        let roomHexList = []
-        let roomList = []
+        let roomHexList = [];
+        let roomList = [];
 
         firebase.database().ref('Game').once('value', (snapshot) => {
             snapshot.forEach((data) => {
-                var id = data.key;
+                let id = data.key;
                 const hash = CryptoJS.SHA256(id);
                 const roomHex = hash.toString(CryptoJS.enc.Hex);
                 roomList.push(id);
