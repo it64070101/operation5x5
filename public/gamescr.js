@@ -28,11 +28,13 @@ const btnStart = document.getElementById("btnStartGame");
 const btnAfter = document.getElementById("btnAfterGame");
 const btnExit = document.getElementById("btnExitGame");
 const btnSwitch = document.getElementById("btnSwitchPlayer");
+const btnState = document.getElementById("btnStateRoom");
 btnStart.addEventListener("click", startGame);
 btnTerminate.addEventListener("click", endGame);
 btnAfter.addEventListener("click", afterGame);
 btnExit.addEventListener("click", exitRoom);
 btnSwitch.addEventListener("click", switchPlayer);
+btnState.addEventListener("click", changePrivate);
 
 let tttdata = [
     [0, 0, 0, 0, 0],
@@ -419,6 +421,27 @@ function afterGame() {
     });
 }
 
+function changePrivate() {
+    firebase.database().ref('Game/' + roomCode).once('value', (snapshot) => {
+        snapshot.forEach((data) => {
+            let id = data.key;
+            let id_data = data.val();
+            if (id == "matchmaking") {
+                if (id_data) {
+                    gameDataRef.child(roomCode).update({
+                        matchmaking: false
+                    });
+                }
+                else {
+                    gameDataRef.child(roomCode).update({
+                        matchmaking: true
+                    });
+                }
+            }
+        });
+    });
+}
+
 let playerCount;
 
 gameDataRef.on("value", (snapshot) => {
@@ -542,6 +565,15 @@ function updateGame(snapshot) {
                             document.getElementById("winnerText").innerText = "No winner.";
                         }
                         break;
+                    case "matchmaking":
+                        if (gameInfo[key]) {
+                            btnState.innerText = "PUBLIC";
+                            btnState.style.backgroundColor = "green";
+                        }
+                        else {
+                            btnState.innerText = "PRIVATE";
+                            btnState.style.backgroundColor = "red";
+                        }
                 }
             })
         }

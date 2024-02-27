@@ -74,6 +74,10 @@ p {
 	width: 100%;
 }
 
+#btnStateRoom {
+	background-color: green;
+}
+
 /* Player turn space */
 #print {
 	font-family: Verdana,
