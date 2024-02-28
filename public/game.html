@@ -121,16 +121,20 @@
     <div class="page" id="end-game">
         <h1 id="winnerText"></h1>
         <button type="button" id="btnAfterGame" class="gameBtn">START AGAIN</button>
-        <button type="button" id="btnShareGame" class="gameBtn">SHARE</button>
+        
+        <div class="grid-share">
+            <div id="share-facebook" onclick="shareOnFacebook()"></div>
+            <div id="share-twitter" onclick="shareOnTwitter()"></div>
+        </div>
     </div>
 
     <!-- JavaScript file included -->
+    <script src="auth.js"></script>
     <script src="checkroom.js"></script>
     <script src="gamescr.js"></script>
     <script src="script.js"></script>
-    <script src="auth.js"></script>
     <script src="gameAddScore.js"></script>
-    
+    <script src="share.js"></script>
 </body>
 
 </html>

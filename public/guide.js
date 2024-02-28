@@ -1,7 +1,7 @@
 const tutorialUser = firebase.database().ref("tutorial_table")
 let startTime;
 let timerInterval;
-var elapsedTime;
+var elapsedTime = 0;
 startTime = Date.now(); // บันทึกเวลา
 timerInterval = setInterval(updateTimer, 1000);
 

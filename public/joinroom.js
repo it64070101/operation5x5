@@ -60,6 +60,10 @@ function submitForm() {
                     [tmpEmail]: currentUser.email,
                 });
             }
+                addUser.child(currentUser.uid).update({
+                    Isplay: true,
+                    Inroom: roomCode,
+                })
             window.location.href = `game.html?room=${roomCode}`;
         }
         // ทำสิ่งที่คุณต้องการกับข้อมูลห้องที่ได้รับ

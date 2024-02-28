@@ -43,11 +43,15 @@ function findMatchmakingRooms() {
                     [tmpEmail]: currentUser.email,
                 });
             }
+            addUser.child(currentUser.uid).update({
+                Isplay: true,
+                Inroom: roomlist[randomRoom],
+              })
             window.location.href = `game.html?room=${(roomlist[randomRoom])}`;
         }
         else {
             //if can't find room let createroom
-            createRoom();
+            createRoom(true);
         }
     });
 }

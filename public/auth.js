@@ -10,10 +10,10 @@ const firebaseConfig = {
 };
 firebase.initializeApp(firebaseConfig)
 const addUser = firebase.database().ref("user_google")
-
 var provider = new firebase.auth.GoogleAuthProvider();
 
 firebase.auth().onAuthStateChanged((user) => {
+  const currentUser = firebase.auth().currentUser;
   const url = new URL(window.location.href);
   const pageName = url.pathname.split("/").pop();
   if (user && (pageName == "index.html" || pageName == "")) {
@@ -24,8 +24,24 @@ firebase.auth().onAuthStateChanged((user) => {
   else if (!user && pageName != "index.html"){
     window.location.href = "index.html";
   }
-  
-  
+  if (user && ((pageName != "game.html") && (pageName != "result.html"))) {
+    console.log(pageName)
+    let playingRoom = ""
+    addUser.child(currentUser.uid).once("value").then((snapshot) => {
+      snapshot.forEach((data) => {
+        var id = data.key;
+        var id_data = data.val();
+        if (id == "Inroom" && id_data != "") {
+          playingRoom = id_data
+        }
+      });
+      // add score win round losr to user
+      if (playingRoom != "") {
+        console.log(playingRoom)
+        window.location.href = `game.html?room=${playingRoom}`;
+      }
+    });
+  }
 });
 //const btnLogout = document.querySelector("#logout-button")
 // btnLogout.addEventListener("click", function()

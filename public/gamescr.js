@@ -15,11 +15,10 @@ const gameDataRef = firebase.database().ref("Game");
 const urlParams = new URLSearchParams(window.location.search);
 let roomCode = urlParams.get('room');
 let wrongRoom = true;
-//set new code room
-
 checkwrongRoom(roomCode)
 
 console.log("Room Code:", roomCode);
+
 // const btnJoins = document.querySelectorAll(".btn-join");
 // btnJoins.forEach((btnJoin) => btnJoin.addEventListener("click", joinGame));
 
@@ -452,6 +451,10 @@ gameDataRef.on("value", (snapshot) => {
 let total = 0;
 
 function updateGame(snapshot) {
+
+    // checkUser is can play
+    checkUserCanPlay()
+
     document.getElementById("inputPlayer-x").value = "";
     document.getElementById("inputPlayer-o").value = "";
     // btnJoins.forEach((btnJoin) => btnJoin.disabled = false);
@@ -591,7 +594,6 @@ function updateGame(snapshot) {
         gameDataRef.child(roomCode).remove();
     }
 }
-
 function exitRoom(event) {
     const currentUser = firebase.auth().currentUser;
     if (currentUser) {
@@ -609,6 +611,10 @@ function exitRoom(event) {
                 }
             });
         });
+        addUser.child(currentUser.uid).update({
+            Isplay: false,
+            Inroom: "",
+          })
         window.location.href = "playmode.html";
     }
 }

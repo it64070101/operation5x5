@@ -1,5 +1,5 @@
 
-function createRoom() {
+function createRoom(publceRoom) {
     // สร้างโค้ดสำหรับห้อง (สร้างโค้ดแบบสุ่มเป็นตัวอย่าง)
     // สร้างโค้ดแบบสุ่ม
     const roomCode = generateRoomCode();
@@ -14,8 +14,13 @@ function createRoom() {
         start: "start",
         [tmpTD]: currentUser.uid,
         [tmpEmail]: currentUser.email,
-        matchmaking: true
+        matchmaking: publceRoom,
     });
+    addUser.child(currentUser.uid).update({
+      Isplay: true,
+      Inroom: roomCode,
+    })
+
     window.location.href = `game.html?room=${roomCode}`;
     //SHARoom(roomCode)
     console.log(roomCode)

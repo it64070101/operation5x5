@@ -215,3 +215,26 @@ font-family: Arial, sans-serif;
     }
 }
 
+#share-facebook{
+    margin: 0;
+    background: url('https://cdn.discordapp.com/attachments/1012021672590721096/1212439899601502228/logo_facebook.png?ex=65f1d7a6&is=65df62a6&hm=b6b1e72bb9911b2148da5346fba01735746751bb6f97b7b17058795d72ba058c&');
+    background-repeat: no-repeat;
+    background-size: 100% 100%;
+}
+#share-twitter{
+    margin: 0;
+    background: url('https://cdn.discordapp.com/attachments/1012021672590721096/1212439899375149106/logo_twitter-x.png?ex=65f1d7a6&is=65df62a6&hm=4f013bcbce553efcb8648fed16d2147733a7b81caed91531978aed6be9c008fc&');
+    background-repeat: no-repeat;
+    background-size: 100% 100%;
+}
+.grid-share{
+    padding-bottom: 10%;
+    justify-self: center;
+    justify-content: center;
+    display: grid;
+    grid-template-columns: repeat(2, 4rem);
+    grid-template-rows: repeat(1, 4rem);
+    margin-left: auto;
+    margin-right: auto;
+    gap: 1rem;
+}
