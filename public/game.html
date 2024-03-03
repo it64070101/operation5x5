@@ -23,10 +23,10 @@
         <div id="logo">OPERATION 5x5</div>
         <div class="page" id="join-game">
             <div class="container">
-                <h1 id="showRoomCode">Room code : </h1>
+                <h1 id="showRoomCode">รหัสสมรภูมิ : </h1>
                 <form class="form-inline row">
                     <div class="form-group mb-2 row col-10">
-                        <label for="inputPlayer-x" class="col-form-label col-2">Player X:</label>
+                        <label for="inputPlayer-x" class="col-form-label col-2">ฝ่าย X:</label>
                         <div class="col-10">
                             <input readonly type="text" class="form-control" id="inputPlayer-x" placeholder="Player X">
                         </div>
@@ -39,7 +39,7 @@
                 </form>
                 <form class="form-inline row">
                     <div class="form-group mb-2 row col-10">
-                        <label for="inputPlayer-o" class="col-form-label col-2">Player O:</label>
+                        <label for="inputPlayer-o" class="col-form-label col-2">ฝ่าย O:</label>
                         <div class="col-10">
                             <input readonly type="text" class="form-control" id="inputPlayer-o" placeholder="Player O">
                         </div>
@@ -52,19 +52,19 @@
                 </form>
             </div>
             <div class="container d-flex justify-content-center mb-2">
-                <button type="button" id="btnSwitchPlayer" class="btn btn-success mx-1 gameBtn">SWITCH</button>
+                <button type="button" id="btnSwitchPlayer" class="btn btn-success mx-1 gameBtn">เปลี่ยนฝ่าย</button>
             </div>
             <div class="container d-flex justify-content-center mb-2">
-                <button type="button" id="btnStateRoom" class="btn btn-success mx-1 gameBtn">PUBLIC</button>
+                <button type="button" id="btnStateRoom" class="btn btn-success mx-1 gameBtn">สาธารณะ</button>
             </div>
             <div class="container d-flex justify-content-center mb-2">
-                <button type="button" id="btnStartGame" class="btn btn-success mx-1 gameBtn">START GAME</button>
-                <button type="button" id="btnExitGame" class="btn btn-success mx-1 gameBtn">EXIT GAME</button>
+                <button type="button" id="btnStartGame" class="btn btn-success mx-1 gameBtn">เริ่มสมรภูมิ</button>
+                <button type="button" id="btnExitGame" class="btn btn-success mx-1 gameBtn">ออกจากสมรภูมิ</button>
             </div>
         </div>
         <div class="page" id="play-game">
             <div id="main">
-                <h1 id="player-turn">Player X Turn</h1>
+                <h1 id="player-turn">ผู้บัญชาการฝ่าย X</h1>
                 <br><br>
                 <div id="main-display">
                     <div></div>
@@ -114,14 +114,15 @@
                     <div></div>
                 </div>
                 <br>
-                <button type="button" id="btnTerminateGame" class="btn btn-warning mx-1 gameBtn">END GAME</button>
+                <button type="button" id="btnTerminateGame" class="btn btn-warning mx-1 gameBtn">จบสมรภูมิ</button>
             </div>
         </div>
     </div>
     <div class="page" id="end-game">
         <h1 id="winnerText"></h1>
-        <button type="button" id="btnAfterGame" class="gameBtn">START AGAIN</button>
-        
+        <button type="button" id="btnAfterGame" class="gameBtn">เริ่มต่อสู้อีกครั้ง</button>
+
+        <h1>แบ่งปันการเล่นของคุณ</h1>
         <div class="grid-share">
             <div id="share-facebook" onclick="shareOnFacebook()"></div>
             <div id="share-twitter" onclick="shareOnTwitter()"></div>
@@ -130,7 +131,7 @@
 
     <!-- JavaScript file included -->
     <script src="auth.js"></script>
-    <script src="checkroom.js"></script>
+    <!-- <script src="checkroom.js"></script> -->
     <script src="gamescr.js"></script>
     <script src="script.js"></script>
     <script src="gameAddScore.js"></script>

@@ -216,6 +216,7 @@ th {
 }
 
 #share-facebook {
+    box-shadow: 0px 8px 8px 0px rgba(0, 0, 0, 0.25);
     margin: 0;
     background: url('https://cdn.discordapp.com/attachments/1012021672590721096/1212439899601502228/logo_facebook.png?ex=65f1d7a6&is=65df62a6&hm=b6b1e72bb9911b2148da5346fba01735746751bb6f97b7b17058795d72ba058c&');
     background-repeat: no-repeat;
@@ -223,6 +224,7 @@ th {
 }
 
 #share-twitter {
+    box-shadow: 0px 8px 8px 0px rgba(0, 0, 0, 0.25);
     margin: 0;
     background: url('https://cdn.discordapp.com/attachments/1012021672590721096/1212439899375149106/logo_twitter-x.png?ex=65f1d7a6&is=65df62a6&hm=4f013bcbce553efcb8648fed16d2147733a7b81caed91531978aed6be9c008fc&');
     background-repeat: no-repeat;

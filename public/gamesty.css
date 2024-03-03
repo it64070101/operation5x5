@@ -1,5 +1,5 @@
 h1 {
-	color: orangered;
+	color: black;
 	margin-bottom: -5px;
 }
 
@@ -16,6 +16,8 @@ p {
 	display: flex;
 	flex-direction: column;
 	align-items: center;
+	margin-top: 16px;
+	margin-bottom: 16px;
 }
 
 .row {
@@ -32,6 +34,7 @@ p {
 	font-size: 24px;
 	text-align: center;
 	cursor: pointer;
+	border-radius: 4px;
 }
 
 .cell:active {
@@ -43,10 +46,10 @@ p {
 	box-sizing: border-box;
 	width: 64px;
 	height: 64px;
-	border: 1px solid dodgerblue;
+	/* border: 1px solid dodgerblue; */
 	border-radius: 8px;
-	background-color: whitesmoke;
-	color: dodgerblue;
+	background-color: #EF9936;
+	/* color: dodgerblue; */
 	font-size: 20pt;
 	cursor: pointer;
 	margin: auto;
@@ -55,23 +58,25 @@ p {
 /* Change input arrow button style when disabled.*/
 .but:disabled,
 .but[disabled] {
-	background-color: red;
+	background-color: #AD9A84;
 }
 
 #top-but {
-	width: 100%;
+	width: 90%;
 }
 
 #lef-but {
-	height: 100%;
+	height: 90%;
+	margin-right: 0;
 }
 
 #rig-but {
-	height: 100%;
+	height: 90%;
+	margin-left: 0;
 }
 
 #bot-but {
-	width: 100%;
+	width: 90%;
 }
 
 #btnStateRoom {

@@ -69,7 +69,7 @@ function reset() {
     select = 0;
     selectrow = 0;
     selectcol = 0;
-    document.getElementById("player-turn").innerHTML = "Player X Turn";
+    document.getElementById("player-turn").innerHTML = "ผู้บัญชาการฝ่าย X";
 }
 
 function enableAll() {
@@ -514,7 +514,7 @@ function updateGame(snapshot) {
     })
 
     if (isPlay == "play") {
-        document.getElementById("player-turn").innerHTML = "Player " + playerTurn.toUpperCase() + " Turn";
+        document.getElementById("player-turn").innerHTML = "ผู้บัญชาการฝ่าย" + playerTurn.toUpperCase();
     }
 
     snapshot.forEach((data) => {
@@ -562,10 +562,10 @@ function updateGame(snapshot) {
                         break;
                     case "winner":
                         if (gameInfo[key] == "x" || gameInfo[key] == "o") {
-                            document.getElementById("winnerText").innerText = "Player " + gameInfo[key].toUpperCase() + " is the winner.";
+                            document.getElementById("winnerText").innerText = "ฝ่าย " + gameInfo[key].toUpperCase() + " ชนะ";
                         }
                         else {
-                            document.getElementById("winnerText").innerText = "No winner.";
+                            document.getElementById("winnerText").innerText = "ไม่มีฝ่ายชนะ";
                         }
                         break;
                     case "matchmaking":
@@ -614,7 +614,7 @@ function exitRoom(event) {
         addUser.child(currentUser.uid).update({
             Isplay: false,
             Inroom: "",
-          })
+        })
         window.location.href = "playmode.html";
     }
 }
