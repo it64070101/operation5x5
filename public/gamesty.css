@@ -20,7 +20,6 @@ p {
 	margin-bottom: 16px;
 }
 
-
 .row {
 	display: flex;
 }
@@ -39,6 +38,23 @@ p {
 }
 
 .cell:active {
+	outline: none;
+}
+
+.endcell {
+	border: 1px solid gray;
+	width: 64px;
+	height: 64px;
+	display: flex;
+	align-items: center;
+	justify-content: center;
+	font-size: 24px;
+	text-align: center;
+	cursor: pointer;
+	border-radius: 4px;
+}
+
+.endcell:active {
 	outline: none;
 }
 

@@ -125,6 +125,25 @@ function render(table) {
     }
 }
 
+function renderEnd(table) {
+    let allcell = document.getElementsByClassName("endcell");
+    let cellCount = 0;
+    for (let i = 0; i < 5; i++) {
+        for (let j = 0; j < 5; j++) {
+            if (table[i][j] == 0) {
+                allcell[cellCount].value = null;
+            }
+            else if (table[i][j] == 1) {
+                allcell[cellCount].value = "X";
+            }
+            else if (table[i][j] == 2) {
+                allcell[cellCount].value = "O";
+            }
+            cellCount++;
+        }
+    }
+}
+
 function checkX() {
     let countwinX = 0;
     for (let i = 0; i < 5; i++) {
@@ -235,26 +254,6 @@ function checkY() {
     }
 }
 
-// function joinGame(event) {
-//     const currentUser = firebase.auth().currentUser;
-//     console.log("[Join] Current user", currentUser);
-//     if (currentUser) {
-//         const btnJoinID = event.currentTarget.getAttribute("id");
-//         const player = btnJoinID[btnJoinID.length - 1];
-
-//         const playerForm = document.getElementById(`inputPlayer-${player}`);
-//         if (playerForm.value == "") {
-//             let tmpTD = `user-${player}-id`;
-//             let tmpEmail = `user-${player}-email`;
-//             gameDataRef.child(roomCode).update({
-//                 [tmpTD]: currentUser.uid,
-//                 [tmpEmail]: currentUser.email
-//             });
-//             console.log(currentUser.email + " added.");
-//             event.currentTarget.disabled = true;
-//         }
-//     }
-// }
 function selected(cellNum, row, col) {
     selectrow = row;
     selectcol = col;
@@ -525,6 +524,10 @@ function updateGame(snapshot) {
                 if (key == "table") {
                     tttdata = gameInfo[key];
                     render(gameInfo[key]);
+                    if (isPlay == "end") {
+                        console.log("yes")
+                        renderEnd(gameInfo[key])
+                    }
                 }
             })
         }
@@ -671,25 +674,3 @@ function switchPlayer(event) {
         gameDataRef.child(roomCode).child("user-x-id").remove();
     }
 }
-
-// const btnCancelsJoins = document.querySelectorAll(".btn-cancel-join-game");
-// btnCancelsJoins.forEach((btnCancel) => btnCancel.addEventListener("click", cancelJoin));
-
-// function cancelJoin(event) {
-//     const currentUser = firebase.auth().currentUser;
-//     console.log("[Cancel] Current user:", currentUser);
-//     if (currentUser) {
-//         const btnCancelID = event.currentTarget.getAttribute("id");
-//         const player = btnCancelID[btnCancelID.length - 1];
-
-//         const playerForm = document.getElementById(`inputPlayer-${player}`);
-//         if (playerForm.value && playerForm.value === currentUser.email) {
-//             let tmpTD = `user-${player}-id`;
-//             let tmpEmail = `user-${player}-email`;
-//             gameDataRef.child(roomCode).child(tmpTD).remove();
-//             gameDataRef.child(roomCode).child(tmpEmail).remove();
-//             console.log(`delete on id: ${currentUser.uid}`);
-//             document.querySelector(`#btnJoin-${player}`).disabled = false;
-//         }
-//     }
-// }
