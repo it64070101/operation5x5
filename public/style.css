@@ -117,6 +117,8 @@ input {
     margin: auto;
     border-radius: 0.625rem;
     background: #DCD7AA;
+    padding-top: 1rem;
+    padding-bottom: 1rem;
 }
 
 .page.leaderboard {
@@ -217,12 +219,6 @@ input {
 
 } */
 
-@media (width <=1200px) {
-    #book {
-        display: block;
-    }
-}
-
 #share-facebook {
     box-shadow: 0px 8px 8px 0px rgba(0, 0, 0, 0.25);
     margin: 0;
@@ -255,4 +251,56 @@ input {
 
 .tutorial img {
     width: 192px;
+}
+
+@media (width <=1200px) {
+    #book {
+        display: block;
+    }
+
+    .page {
+        margin-top: 32px;
+    }
+}
+
+@media (width <=576px) {
+    #logo {
+        font-size: 2rem;
+    }
+
+    .page {
+        width: 100%;
+        height: 100%;
+    }
+
+    button.select {
+        width: 80%;
+    }
+
+    button.small {
+        width: 60%;
+        font-size: 1rem;
+    }
+
+    .cell {
+        width: 32px;
+        height: 32px;
+    }
+
+    #top-but,
+    #bot-but {
+        height: 90%;
+    }
+
+    #lef-but {
+        width: 70%;
+        margin-right: 0;
+    }
+
+    #rig-but {
+        width: 70%;
+        margin-left: 0;
+    }
+
+
 }

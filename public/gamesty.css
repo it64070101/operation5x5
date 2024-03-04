@@ -62,7 +62,8 @@ p {
 	background-color: #AD9A84;
 }
 
-#top-but {
+#top-but,
+#bot-but {
 	width: 90%;
 }
 
@@ -76,9 +77,6 @@ p {
 	margin-left: 0;
 }
 
-#bot-but {
-	width: 90%;
-}
 
 #btnStateRoom {
 	background-color: green;

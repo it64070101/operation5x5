@@ -514,7 +514,7 @@ function updateGame(snapshot) {
     })
 
     if (isPlay == "play") {
-        document.getElementById("player-turn").innerHTML = "ผู้บัญชาการฝ่าย" + playerTurn.toUpperCase();
+        document.getElementById("player-turn").innerHTML = "ผู้บัญชาการฝ่าย " + playerTurn.toUpperCase();
     }
 
     snapshot.forEach((data) => {
