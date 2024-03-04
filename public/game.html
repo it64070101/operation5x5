@@ -23,12 +23,13 @@
         <div id="logo">OPERATION 5x5</div>
         <div class="page" id="join-game">
             <div class="container">
-                <h1 id="showRoomCode">รหัสสมรภูมิ : </h1>
-                <form class="form-inline row">
-                    <div class="form-group mb-2 row col-10">
-                        <label for="inputPlayer-x" class="col-form-label col-2">ฝ่าย X:</label>
+                <h1 id="showRoomCode">รหัสสมรภูมิ</h1>
+                <form class="form-inline">
+                    <div class="form-group mb-2 col-10">
+                        <label for="inputPlayer-x" class="col-form-label col-2">ฝ่าย X </label>
                         <div class="col-10">
-                            <input readonly type="text" class="form-control" id="inputPlayer-x" placeholder="Player X">
+                            <input readonly type="text" class="form-control" id="inputPlayer-x"
+                                placeholder="ผู้บัญชาการฝ่าย X">
                         </div>
                     </div>
                     <!-- <div class="form-group mb-2 col-2">
@@ -37,11 +38,12 @@
                             class="btn btn-secondary btn-cancel-join-game gameBtn">Cancel</button>
                     </div> -->
                 </form>
-                <form class="form-inline row">
-                    <div class="form-group mb-2 row col-10">
-                        <label for="inputPlayer-o" class="col-form-label col-2">ฝ่าย O:</label>
+                <form class="form-inline">
+                    <div class="form-group mb-2 col-10">
+                        <label for="inputPlayer-o" class="col-form-label col-2">ฝ่าย O</label>
                         <div class="col-10">
-                            <input readonly type="text" class="form-control" id="inputPlayer-o" placeholder="Player O">
+                            <input readonly type="text" class="form-control" id="inputPlayer-o"
+                                placeholder="ผู้บัญชาการฝ่าย O">
                         </div>
                     </div>
                     <!-- <div class="form-group mb-2 col-2">
@@ -52,14 +54,17 @@
                 </form>
             </div>
             <div class="container d-flex justify-content-center mb-2">
-                <button type="button" id="btnSwitchPlayer" class="btn btn-success mx-1 gameBtn">เปลี่ยนฝ่าย</button>
+                <button type="button" id="btnSwitchPlayer" class="btn btn-success mx-1 small"><i
+                        class="fa-solid fa-right-left"></i><br>สลับ</button>
             </div>
             <div class="container d-flex justify-content-center mb-2">
                 <button type="button" id="btnStateRoom" class="btn btn-success mx-1 gameBtn">สาธารณะ</button>
             </div>
             <div class="container d-flex justify-content-center mb-2">
-                <button type="button" id="btnStartGame" class="btn btn-success mx-1 gameBtn">เริ่มสมรภูมิ</button>
-                <button type="button" id="btnExitGame" class="btn btn-success mx-1 gameBtn">ออกจากสมรภูมิ</button>
+                <button type="button" id="btnStartGame" class="btn btn-success mx-1 select"><i
+                        class="fa-solid fa-play"></i><br>เริ่มสมรภูมิ</button><br>
+                <button type="button" id="btnExitGame" class="btn btn-success mx-1 small"><i
+                        class="fa-solid fa-arrow-left"></i><br>ออกจากสมรภูมิ</button>
             </div>
         </div>
         <div class="page" id="play-game">
@@ -114,13 +119,15 @@
                     <div></div>
                 </div>
                 <br>
-                <button type="button" id="btnTerminateGame" class="btn btn-warning mx-1 gameBtn">จบสมรภูมิ</button>
+                <button type="button" id="btnTerminateGame" class="btn btn-warning mx-1 small"><i
+                        class="fa-solid fa-arrow-right-from-bracket"></i><br>จบสมรภูมิ</button>
             </div>
         </div>
     </div>
     <div class="page" id="end-game">
         <h1 id="winnerText"></h1>
-        <button type="button" id="btnAfterGame" class="gameBtn">เริ่มต่อสู้อีกครั้ง</button>
+        <button type="button" id="btnAfterGame" class="small"><i
+                class="fa-solid fa-rotate-left"></i><br>เริ่มต่อสู้อีกครั้ง</button>
 
         <h1>แบ่งปันการเล่นของคุณ</h1>
         <div class="grid-share">
@@ -131,7 +138,7 @@
 
     <!-- JavaScript file included -->
     <script src="auth.js"></script>
-    <script src="checkroom.js"></script>
+    <!-- <script src="checkroom.js"></script> -->
     <script src="gamescr.js"></script>
     <script src="script.js"></script>
     <script src="gameAddScore.js"></script>
