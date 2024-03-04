@@ -74,7 +74,9 @@ p {
 
 /* Change input arrow button style when disabled.*/
 .but:disabled,
-.but[disabled] {
+.but[disabled],
+#btnStartGame:disabled,
+#btnStartGame[disabled] {
 	background-color: #AD9A84;
 }
 

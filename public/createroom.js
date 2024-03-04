@@ -4,7 +4,7 @@ function createRoom(publceRoom) {
     // สร้างโค้ดแบบสุ่ม
     const roomCode = generateRoomCode();
     const roomURL = window.location.href + '?room=' + roomCode; // สร้าง URL ที่รวมโค้ดห้อง
-    alert('ห้องของคุณถูกสร้างเรียบร้อยแล้ว! โค้ดของคุณคือ: ' + roomCode); // แสดง Alert พร้อมโค้ดห้อง
+    // alert('ห้องของคุณถูกสร้างเรียบร้อยแล้ว! โค้ดของคุณคือ: ' + roomCode); // แสดง Alert พร้อมโค้ดห้อง
     console.log(roomURL);
     const createRoom = firebase.database().ref("Game")
     const currentUser = firebase.auth().currentUser;

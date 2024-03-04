@@ -6,7 +6,7 @@ function checkwrongRoom(roomCode) {
       wrongRoom = false;
     }
     if (wrongRoom) {
-      alert("คุณเข้าสู้หน้านี้ไม่ถูกต้อง เราจะพาคุณกลับไป");
+      // alert("คุณเข้าสู้หน้านี้ไม่ถูกต้อง เราจะพาคุณกลับไป");
       window.location.href = `playmode.html`;
     }
   });
@@ -25,7 +25,7 @@ function checkUserCanPlay() {
     });
     // add score win round losr to user
     if (kickplayer == true) {
-      alert("คุณเข้าสู้หน้านี้ไม่ถูกต้อง เราจะพาคุณกลับไป")
+      // alert("คุณเข้าสู้หน้านี้ไม่ถูกต้อง เราจะพาคุณกลับไป")
       window.location.href = `playmode.html`;
     }
   });
