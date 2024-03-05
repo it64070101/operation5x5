@@ -112,3 +112,9 @@ p {
 #main {
 	text-align: center;
 }
+
+@media (width <= 350px) {
+	.namePlayer {
+		width: 90%;
+	}
+}
