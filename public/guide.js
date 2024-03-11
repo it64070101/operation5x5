@@ -2,11 +2,11 @@ const tutorialUser = firebase.database().ref("tutorial_table")
 let startTime;
 let timerInterval;
 var elapsedTime = 0;
-startTime = Date.now(); // บันทึกเวลา
+startTime = Date.now();
 timerInterval = setInterval(updateTimer, 1000);
 
 function stopTimer() {
-    clearInterval(timerInterval); // หยุดการเรียกฟังก์ชัน updateTimer()
+    clearInterval(timerInterval);
     // set database time
     const currentUser = firebase.auth().currentUser;
     tutorialUser.child(currentUser.uid).update({
@@ -14,10 +14,10 @@ function stopTimer() {
         name: currentUser.displayName,
         tutorialTime: elapsedTime,
       })
-    startTime = null; // ล้างค่าเวลาเริ่มต้น
+    startTime = null;
     window.location.href = "profile.html";
 }
 
 function updateTimer() {
-    elapsedTime = Math.floor((Date.now() - startTime) / 1000); // คำนวณเวลาที่ผ่านไป
+    elapsedTime = Math.floor((Date.now() - startTime) / 1000);
 }

@@ -2,18 +2,13 @@ var urlToShare = 'https://operation-5x5.web.app';
 const usershare = firebase.database().ref("share")
 function shareOnFacebook() {
     addDataShare(1,0)
-    // Create the Facebook share URL with the YouTube link
     const facebookShareURL = `https://www.facebook.com/sharer/sharer.php?u=${encodeURIComponent(urlToShare)}`;
-    // Open a new window or tab with the share dialog
     window.open(facebookShareURL, '_blank');
   }
   
   function shareOnTwitter() {
     addDataShare(0,1)
-    // Create the Facebook share URL with the YouTube link
     const twitterURL = `https://twitter.com/intent/tweet?url=${encodeURIComponent(urlToShare)}`;
-  
-    // Open a new window or tab with the share dialog
     window.open(twitterURL, '_blank');
   }
   function addDataShare(facebook_share, twitter_share){

@@ -1,6 +1,5 @@
 firebase.auth().onAuthStateChanged((user) => {
     if (user) {
-      //   document.getElementById("userImage").src = user.photoURL;
       document.querySelector("#player-name").innerHTML = user.displayName;
       // read data
       document.querySelector("#player-winlose").innerHTML = 'Win/Lose: ';
@@ -27,9 +26,7 @@ firebase.auth().onAuthStateChanged((user) => {
         //add user win lose
         document.querySelector("#player-winlose").innerHTML += thisUserWin+thisUserLose
       });
-      // getList(user);
     }
-    //setupUI(user)
   });
       // read data
       addUser.once("value").then((snapshot) => {
@@ -106,27 +103,24 @@ const players = [];
       });
 
 function sortPlayer(){
-  // คำนวณ rank โดยเรียงลำดับตามรอบการเล่นและจำนวนการแพ้ชนะ
 players.sort((a, b) => {
   const winRateA = a.wins / a.roundsPlayed;
   const winRateB = b.wins / b.roundsPlayed;
   if (a.roundsPlayed !== b.roundsPlayed) {
-      return b.roundsPlayed - a.roundsPlayed; // เรียงลำดับตามรอบการเล่น
+      return b.roundsPlayed - a.roundsPlayed;
   } else {
-      return winRateB - winRateA; // เรียงลำดับตามจำนวนการชนะ
+      return winRateB - winRateA;
   }
 });
 }
 
 function insertPlayer(){
-  // เลือกตาราง leaderboard
+
 const leaderboardTable = document.getElementById('leaderboard');
 
-// วนลูปเพื่อเพิ่มข้อมูลผู้เล่นลงในตาราง
-players.forEach((player, index) => {
-  const row = leaderboardTable.insertRow(); // เพิ่มแถวใหม่ในตาราง
 
-  // เพิ่ม cell สำหรับ rank, name, และ w/l
+players.forEach((player, index) => {
+  const row = leaderboardTable.insertRow();
   const currentUser = firebase.auth().currentUser;
   if (currentUser.uid == player.user_id){
     document.querySelector("#player-rank").innerHTML += " " + (index + 1)

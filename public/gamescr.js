@@ -19,8 +19,6 @@ checkwrongRoom(roomCode)
 
 console.log("Room Code:", roomCode);
 
-// const btnJoins = document.querySelectorAll(".btn-join");
-// btnJoins.forEach((btnJoin) => btnJoin.addEventListener("click", joinGame));
 
 const btnTerminate = document.getElementById("btnTerminateGame");
 const btnStart = document.getElementById("btnStartGame");

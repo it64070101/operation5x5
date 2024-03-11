@@ -9,8 +9,6 @@ function findMatchmakingRooms() {
             if (id_data.matchmaking === true && (id_data['user-x-id'] || id_data['user-o-id']) && !(id_data['user-x-id'] && id_data['user-o-id'])) {
                 let nameId = id_data['user-x-id'] ? id_data['user-x-id'] : (id_data['user-o-id'] ? id_data['user-o-id'] : '');
                 let roomRank = checkRank(nameId)
-                // console.log("Matchmaking room found for id:", id);
-                // console.log(nameId);
                 roomlist.push(id)
                 if (Math.abs(userRank - roomRank) <= 10) {
                     // Set criteria for rank

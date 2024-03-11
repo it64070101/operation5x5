@@ -1,10 +1,7 @@
 
 function createRoom(publceRoom) {
-    // สร้างโค้ดสำหรับห้อง (สร้างโค้ดแบบสุ่มเป็นตัวอย่าง)
-    // สร้างโค้ดแบบสุ่ม
     const roomCode = generateRoomCode();
-    const roomURL = window.location.href + '?room=' + roomCode; // สร้าง URL ที่รวมโค้ดห้อง
-    // alert('ห้องของคุณถูกสร้างเรียบร้อยแล้ว! โค้ดของคุณคือ: ' + roomCode); // แสดง Alert พร้อมโค้ดห้อง
+    const roomURL = window.location.href + '?room=' + roomCode; // create code room
     console.log(roomURL);
     const createRoom = firebase.database().ref("Game")
     const currentUser = firebase.auth().currentUser;
@@ -22,9 +19,6 @@ function createRoom(publceRoom) {
     })
 
     window.location.href = `game.html?room=${roomCode}`;
-    //SHARoom(roomCode)
-    console.log(roomCode)
-    // เพิ่มข้อความที่ต้องการแฮช
 }
 
 function generateRoomCode() {
@@ -35,13 +29,4 @@ function generateRoomCode() {
         result += characters.charAt(Math.floor(Math.random() * characters.length));
     }
     return result;
-}
-
-function SHARoom(roomCode) {
-    // สร้างค่าแฮช SHA-256
-    const roomCodehash = CryptoJS.SHA256(roomCode);
-
-    // แปลงค่าแฮชเป็นรหัสฐาน 16 (Hex)
-    const roomCodehashInHex = roomCodehash.toString(CryptoJS.enc.Hex);
-    window.location.href = `game.html?room=${roomCodehashInHex}`;
 }

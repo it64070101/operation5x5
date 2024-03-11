@@ -17,15 +17,14 @@ firebase.auth().onAuthStateChanged((user) => {
   const url = new URL(window.location.href);
   const pageName = url.pathname.split("/").pop();
   if (user && (pageName == "index.html" || pageName == "")) {
-    // console.log(user)
-    // getList(user);
+    
     window.location.href = "profile.html";
   }
   else if (!user && pageName != "index.html"){
     window.location.href = "index.html";
   }
   if (user && ((pageName != "game.html") && (pageName != "result.html"))) {
-    console.log(pageName)
+    
     let playingRoom = ""
     addUser.child(currentUser.uid).once("value").then((snapshot) => {
       snapshot.forEach((data) => {
@@ -37,22 +36,19 @@ firebase.auth().onAuthStateChanged((user) => {
       });
       // add score win round losr to user
       if (playingRoom != "") {
-        console.log(playingRoom)
+        
         window.location.href = `game.html?room=${playingRoom}`;
       }
     });
   }
 });
-//const btnLogout = document.querySelector("#logout-button")
-// btnLogout.addEventListener("click", function()
+
 function logoutUser() {
   firebase.auth().signOut();
   console.log("Logout completed")
   window.location.href = "index.html";
 }
 
-//const loginForm = document.querySelector("#login-button");
-// loginForm.addEventListener("click", loginUser);
 var add_score = true;
 function loginUser(event) {
   firebase.auth()
@@ -92,7 +88,7 @@ function loginUser(event) {
             count_round: 0,
             count_win: 0,
           })
-          console.log("add score")
+          
         }
       });
 
