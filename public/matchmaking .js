@@ -26,9 +26,11 @@ function findMatchmakingRooms() {
                 const currentUser = firebase.auth().currentUser;
                 let tmpTD = `user-x-id`;
                 let tmpEmail = `user-x-email`;
+                let tmpName = `user-x-name`;
                 selectRoom.child(roomlist[randomRoom]).update({
                     [tmpTD]: currentUser.uid,
                     [tmpEmail]: currentUser.email,
+                    [tmpName]: currentUser.displayName
                 });
             }
             else if (snapshot.val()[roomlist[randomRoom]]["user-o-email"] == undefined) {
@@ -36,9 +38,11 @@ function findMatchmakingRooms() {
                 const currentUser = firebase.auth().currentUser;
                 let tmpTD = `user-o-id`;
                 let tmpEmail = `user-o-email`;
+                let tmpName = `user-o-name`;
                 selectRoom.child(roomlist[randomRoom]).update({
                     [tmpTD]: currentUser.uid,
                     [tmpEmail]: currentUser.email,
+                    [tmpName]: currentUser.displayName
                 });
             }
             addUser.child(currentUser.uid).update({

@@ -29,17 +29,21 @@ function submitForm() {
             if (rooms[roomCode]["user-x-email"] == undefined && rooms[roomCode]["user-o-email"] != currentUser.email) {
                 let tmpTD = `user-x-id`;
                 let tmpEmail = `user-x-email`;
+                let tmpName = `user-x-name`;
                 selectRoom.child(roomCode).update({
                     [tmpTD]: currentUser.uid,
                     [tmpEmail]: currentUser.email,
+                    [tmpName]: currentUser.displayName
                 });
             }
             else if (rooms[roomCode]["user-o-email"] == undefined && rooms[roomCode]["user-x-email"] != currentUser.email) {
                 let tmpTD = `user-o-id`;
                 let tmpEmail = `user-o-email`;
+                let tmpName = `user-o-name`;
                 selectRoom.child(roomCode).update({
                     [tmpTD]: currentUser.uid,
                     [tmpEmail]: currentUser.email,
+                    [tmpName]: currentUser.displayName
                 });
             }
                 addUser.child(currentUser.uid).update({

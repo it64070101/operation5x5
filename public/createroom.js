@@ -7,11 +7,13 @@ function createRoom(publceRoom) {
     const currentUser = firebase.auth().currentUser;
     let tmpTD = `user-x-id`;
     let tmpEmail = `user-x-email`;
+    let tmpName = `user-x-name`;
     createRoom.child(roomCode).update({
         start: "start",
         [tmpTD]: currentUser.uid,
         [tmpEmail]: currentUser.email,
         matchmaking: publceRoom,
+        [tmpName]: currentUser.displayName
     });
     addUser.child(currentUser.uid).update({
       Isplay: true,
