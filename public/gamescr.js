@@ -133,9 +133,12 @@ function renderEnd(table) {
             }
             else if (table[i][j] == 1) {
                 allcell[cellCount].value = "X";
+                allcell[cellCount].style.backgroundColor = "#ff0000";
             }
             else if (table[i][j] == 2) {
                 allcell[cellCount].value = "O";
+                allcell[cellCount].style.backgroundColor = "#0000ff";
+
             }
             cellCount++;
         }
