@@ -3,9 +3,9 @@
 }
 
 body {
-    background: #66705D;
     font-family: 'Noto Sans Thai Looped', sans-serif;
     font-family: 'Sriracha', cursive;
+    background-image: url("background.jpg");
 }
 
 form {
@@ -54,6 +54,9 @@ button.gameBtn[disabled] {
 }
 
 button:hover {
+    background: #66705D;
+    background: white;
+    color: black;
     cursor: pointer;
 }
 
