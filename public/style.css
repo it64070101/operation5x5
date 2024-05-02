@@ -53,6 +53,28 @@ button.gameBtn[disabled] {
     opacity: 50%;
 }
 
+button.room {
+    display: grid;
+    grid-template-columns: 40% 40% 20%;
+    height: 6rem;
+    width: 90%;
+    background: #66705D;
+    margin: 4px auto 4px auto;
+    font-size: 16px;
+}
+
+.room-name {
+    text-align: start;
+}
+
+.player-name {
+    text-align: end;
+    white-space: nowrap;
+    overflow: clip;
+}
+
+.player-rank {}
+
 button:hover {
     background: #66705D;
     background: white;
@@ -75,6 +97,10 @@ input {
     border: none;
     min-height: 2rem;
     width: 20rem;
+}
+
+.page {
+    overflow-y: auto;
 }
 
 #logo {
@@ -128,9 +154,9 @@ input {
     padding-bottom: 1rem;
 }
 
-.page.leaderboard {
-    overflow-y: scroll;
-}
+/* .page.leaderboard {
+    overflow-y: auto;
+} */
 
 .popup-overlay {
     display: none;
