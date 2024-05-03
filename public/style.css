@@ -103,11 +103,15 @@ input {
     overflow-y: auto;
 }
 
+#player-profile {
+    margin-top: 32px;
+}
+
 #logo {
     text-align: center;
     color: #FFF;
     font-family: 'Noto Sans Thai Looped', sans-serif;
-    font-size: 4rem;
+    font-size: 3rem;
     font-style: normal;
     font-weight: 900;
     line-height: normal;
