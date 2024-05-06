@@ -24,16 +24,27 @@
 <body>
     <div class="container">
         <div id="logo">OPERATION 5x5</div>
-        <div class="page">
-            <form action="" id="room-list">
-                <h1>สมรภูมิ</h1><button class="small" type="button" id="roomto-profile-button"><i
-                        class="fa-solid fa-arrow-left"></i><br>กลับ</button>
-                <button class="room" type="button">
-                    <div class="room-name">roomname</div>
-                    <div class="player-name">player name</div>
-                    <div class="player-rank"><i class="fa-solid fa-star"></i></div>
-                </button>
-            </form>
+        <div id="outside-container">
+            <div id="button-container">
+                <button class="select" type="button" id="host-button" onclick="createRoom(false)"><i
+                        class="fa-solid fa-circle-plus"></i><br>สร้างสมรภูมิใหม่</button>
+                <button class="select" type="button" id="random-button" onclick="findMatchmakingRooms()"><i
+                        class="fa-solid fa-shuffle"></i><br>สุ่มสมรภูมิ</button>
+                <button class="select" type="button" id="roomto-profile-button"><i
+                        class="fa-solid fa-user-large"></i></i><br>Profile</button>
+                <button class="small" type="button" id="logout-button" onclick="logoutUser()"><i
+                        class="fa-solid fa-arrow-right-from-bracket"></i><br>Logout</button>
+            </div>
+            <div class="page">
+                <form action="" id="room-list">
+                    <h1>สมรภูมิ</h1>
+                    <button class="room" type="button">
+                        <div class="room-name">roomname</div>
+                        <div class="player-name">player name</div>
+                        <div class="player-rank"><i class="fa-solid fa-star"></i></div>
+                    </button>
+                </form>
+            </div>
         </div>
     </div>
     <script src="script.js"></script>
