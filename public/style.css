@@ -103,6 +103,25 @@ input {
     overflow-y: auto;
 }
 
+#mobile-button {
+    width: 96px;
+    height: 96px;
+    border-radius: 64px;
+    position: fixed;
+    bottom: 16px;
+    display: none;
+}
+
+#mobile-sidebar {
+    width: 100%;
+    height: 100%;
+    background: #000000aa;
+    display: none;
+    flex-direction: column;
+    position: fixed;
+    left: -100%;
+}
+
 #player-profile {
     margin-top: 32px;
 }
@@ -278,6 +297,26 @@ input {
 
     .page {
         margin-top: 32px;
+    }
+
+}
+
+@media (width <=880px) {
+
+    #outside-container {
+        grid-template-columns: auto;
+    }
+
+    #outside-container>#button-container {
+        display: none;
+    }
+
+    #mobile-button {
+        display: block;
+    }
+
+    #mobile-sidebar {
+        display: flex;
     }
 }
 

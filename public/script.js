@@ -26,6 +26,16 @@ function setPlayerProfile() {
     }
 }
 
+function showOverlay() {
+    const sidebar = document.querySelector("#mobile-sidebar")
+    sidebar.style.left = "0px"
+}
+
+function hideOverlay() {
+    const sidebar = document.querySelector("#mobile-sidebar")
+    sidebar.style.left = "-100%"
+}
+
 function addNewRoom() {
     let roomName = "function: addNewRoom()"
     let playerName = "ใน script.js"
