@@ -8,7 +8,7 @@ function shareOnFacebook() {
   
   function shareOnTwitter() {
     addDataShare(0,1)
-    const twitterURL = `https://twitter.com/intent/tweet?url=${encodeURIComponent(urlToShare)}`;
+    const twitterURL = `https://twitter.com/intent/post?text=%0A${encodeURIComponent(urlToShare)}`;
     window.open(twitterURL, '_blank');
   }
   function addDataShare(facebook_share, twitter_share){
