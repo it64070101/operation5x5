@@ -23,26 +23,27 @@
 
 <body>
     <button id="mobile-button" class="select" onclick="showOverlay()"><i class="fa-solid fa-bars"></i></button>
-    <div id="mobile-sidebar" onclick="hideOverlay()"><button class="select" type="button" id="host-button"
-            onclick="createRoom(false)"><i class="fa-solid fa-circle-plus"></i><br>สร้างสมรภูมิใหม่</button>
-        <button class="select" type="button" id="random-button" onclick="findMatchmakingRooms()"><i
+    <div id="mobile-sidebar" onclick="hideOverlay()">
+        <button class="select host-button" type="button" onclick="createRoom(false)"><i
+                class="fa-solid fa-circle-plus"></i><br>สร้างสมรภูมิใหม่</button>
+        <button class="select random-button" type="button" onclick="findMatchmakingRooms()"><i
                 class="fa-solid fa-shuffle"></i><br>สุ่มสมรภูมิ</button>
-        <button class="select" type="button" id="roomto-profile-button"><i
+        <button class="select profile-button" type="button"><i
                 class="fa-solid fa-user-large"></i></i><br>โปรไฟล์</button>
-        <button class="small" type="button" id="logout-button" onclick="logoutUser()"><i
+        <button class="small logout-button" type="button" onclick="logoutUser()"><i
                 class="fa-solid fa-arrow-right-from-bracket"></i><br>ลงชื่อออก</button>
     </div>
     <div class="container">
         <div id="logo">OPERATION 5x5</div>
         <div id="outside-container">
-            <div id="button-container">
-                <button class="select" type="button" id="host-button" onclick="createRoom(false)"><i
+            <div class="button-container">
+                <button class="select host-button" type="button" onclick="createRoom(false)"><i
                         class="fa-solid fa-circle-plus"></i><br>สร้างสมรภูมิใหม่</button>
-                <button class="select" type="button" id="random-button" onclick="findMatchmakingRooms()"><i
+                <button class="select random-button" type="button" onclick="findMatchmakingRooms()"><i
                         class="fa-solid fa-shuffle"></i><br>สุ่มสมรภูมิ</button>
-                <button class="select" type="button" id="roomto-profile-button"><i
-                        class="fa-solid fa-user-large"></i></i><br>โปรไฟล์</button>
-                <button class="small" type="button" id="logout-button" onclick="logoutUser()"><i
+                <button class="small tutorial-button" type="button"><i
+                        class="fa-solid fa-book-open"></i><br>คู่มือยุทธวิธี</button>
+                <button class="small logout-button" type="button" onclick="logoutUser()"><i
                         class="fa-solid fa-arrow-right-from-bracket"></i><br>ลงชื่อออก</button>
             </div>
             <div class="page">
@@ -55,9 +56,14 @@
                     </button>
                 </form>
             </div>
+            <div class="button-container">
+                <button class="select profile-button" type="button"><i
+                        class="fa-solid fa-user-large"></i></i><br>โปรไฟล์</button>
+            </div>
         </div>
     </div>
     <script src="script.js"></script>
+    <script src="auth.js"></script>
     <!-- <script src="auth.js"></script> -->
 </body>
 

@@ -17,14 +17,14 @@ firebase.auth().onAuthStateChanged((user) => {
   const url = new URL(window.location.href);
   const pageName = url.pathname.split("/").pop();
   if (user && (pageName == "index.html" || pageName == "")) {
-    
+
     window.location.href = "profile.html";
   }
-  else if (!user && pageName != "index.html"){
+  else if (!user && pageName != "index.html") {
     window.location.href = "index.html";
   }
   if (user && ((pageName != "game.html") && (pageName != "result.html"))) {
-    
+
     let playingRoom = ""
     addUser.child(currentUser.uid).once("value").then((snapshot) => {
       snapshot.forEach((data) => {
@@ -36,7 +36,7 @@ firebase.auth().onAuthStateChanged((user) => {
       });
       // add score win round losr to user
       if (playingRoom != "") {
-        
+
         window.location.href = `game.html?room=${playingRoom}`;
       }
     });
@@ -88,11 +88,11 @@ function loginUser(event) {
             count_round: 0,
             count_win: 0,
           })
-          
+
         }
       });
 
-      window.location.href = "profile.html";
+      window.location.href = "room.html";
 
     }).catch((error) => {
       // Handle Errors here.

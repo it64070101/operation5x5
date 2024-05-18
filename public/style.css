@@ -149,7 +149,7 @@ input {
     border-spacing: 0px;
 }
 
-#button-container {
+.button-container {
     gap: 8px;
     display: flex;
     flex-direction: column;
@@ -161,7 +161,7 @@ input {
     grid-template-columns: 1fr 544px 1fr;
 }
 
-#outside-container>#button-container>button {
+#outside-container>.button-container>button {
     margin: 0 16px 16px 0;
     width: 256px;
 }
@@ -307,7 +307,7 @@ input {
         grid-template-columns: auto;
     }
 
-    #outside-container>#button-container {
+    #outside-container>.button-container {
         display: none;
     }
 
