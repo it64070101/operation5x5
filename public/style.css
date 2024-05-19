@@ -103,6 +103,28 @@ input {
     overflow-y: auto;
 }
 
+#player-star {
+    width: 32px;
+}
+
+#player-photo {
+    max-width: 128px;
+    max-height: 128px;
+    border: #000 solid 1px;
+    border-radius: 100%;
+    background-position: center;
+    background-size: cover;
+}
+
+#player-photo-mobile {
+    max-width: 128px;
+    max-height: 128px;
+    border: #000 solid 1px;
+    border-radius: 100%;
+    background-position: center;
+    background-size: cover;
+}
+
 #mobile-button {
     width: 96px;
     height: 96px;
@@ -113,9 +135,9 @@ input {
 }
 
 #mobile-sidebar {
-    width: 100%;
+    width: 200px;
     height: 100%;
-    background: #000000aa;
+    background: #EF9936;
     display: none;
     flex-direction: column;
     position: fixed;
@@ -156,14 +178,26 @@ input {
     align-items: flex-end;
 }
 
+.right-button {
+    width: 128px;
+    height: 128px;
+    align-items: flex-start;
+}
+
 #outside-container {
     display: grid;
     grid-template-columns: 1fr 544px 1fr;
 }
 
 #outside-container>.button-container>button {
-    margin: 0 16px 16px 0;
-    width: 256px;
+    margin: 16px 16px 16px 16px;
+    /* width: 256px; */
+}
+
+
+.plain {
+    background: #EF9936;
+    box-shadow: none;
 }
 
 .tutorial {
@@ -295,8 +329,9 @@ input {
         display: block;
     }
 
-    .page {
-        margin-top: 32px;
+    #outside-container>.button-container>button {
+        margin: 16px 16px 16px 16px;
+        width: 148px;
     }
 
 }

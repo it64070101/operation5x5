@@ -105,3 +105,11 @@ function loginUser(event) {
       // ...
     });
 }
+
+firebase.auth().onAuthStateChanged((user) => {
+  if (user) {
+    console.dir(user);
+    document.querySelector("#player-photo").style.backgroundImage = `url(${user.photoURL})`;
+    document.querySelector("#player-photo-mobile").style.backgroundImage = `url(${user.photoURL})`;
+  }
+})

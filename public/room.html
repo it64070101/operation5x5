@@ -24,13 +24,14 @@
 <body>
     <button id="mobile-button" class="select" onclick="showOverlay()"><i class="fa-solid fa-bars"></i></button>
     <div id="mobile-sidebar" onclick="hideOverlay()">
-        <button class="select host-button" type="button" onclick="createRoom(false)"><i
+        <button class="select profile-button" id="player-photo-mobile" type="button"></button>
+        <button class="plain host-button" type="button" onclick="createRoom(false)"><i
                 class="fa-solid fa-circle-plus"></i><br>สร้างสมรภูมิใหม่</button>
-        <button class="select random-button" type="button" onclick="findMatchmakingRooms()"><i
+        <button class="plain random-button" type="button" onclick="findMatchmakingRooms()"><i
                 class="fa-solid fa-shuffle"></i><br>สุ่มสมรภูมิ</button>
-        <button class="select profile-button" type="button"><i
-                class="fa-solid fa-user-large"></i></i><br>โปรไฟล์</button>
-        <button class="small logout-button" type="button" onclick="logoutUser()"><i
+        <button class="plain tutorial-button" type="button"><i
+                class="fa-solid fa-book-open"></i><br>คู่มือยุทธวิธี</button>
+        <button class="plain logout-button" type="button" onclick="logoutUser()"><i
                 class="fa-solid fa-arrow-right-from-bracket"></i><br>ลงชื่อออก</button>
     </div>
     <div class="container">
@@ -38,7 +39,7 @@
         <div id="outside-container">
             <div class="button-container">
                 <button class="select host-button" type="button" onclick="createRoom(false)"><i
-                        class="fa-solid fa-circle-plus"></i><br>สร้างสมรภูมิใหม่</button>
+                        class="fa-solid fa-circle-plus"></i><br>สร้างสมรภูมิ</button>
                 <button class="select random-button" type="button" onclick="findMatchmakingRooms()"><i
                         class="fa-solid fa-shuffle"></i><br>สุ่มสมรภูมิ</button>
                 <button class="small tutorial-button" type="button"><i
@@ -56,15 +57,14 @@
                     </button>
                 </form>
             </div>
-            <div class="button-container">
-                <button class="select profile-button" type="button"><i
-                        class="fa-solid fa-user-large"></i></i><br>โปรไฟล์</button>
+            <div class="button-container right-button">
+                <button class="select profile-button" id="player-photo" type="button"></button>
             </div>
         </div>
     </div>
     <script src="script.js"></script>
     <script src="auth.js"></script>
-    <!-- <script src="auth.js"></script> -->
+    <script src="profile.js"></script>
 </body>
 
 </html>
