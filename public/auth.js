@@ -17,8 +17,7 @@ firebase.auth().onAuthStateChanged((user) => {
   const url = new URL(window.location.href);
   const pageName = url.pathname.split("/").pop();
   if (user && (pageName == "index.html" || pageName == "")) {
-
-    window.location.href = "profile.html";
+    window.location.href = "room.html";
   }
   else if (!user && pageName != "index.html") {
     window.location.href = "index.html";
@@ -87,8 +86,9 @@ function loginUser(event) {
             count_lose: 0,
             count_round: 0,
             count_win: 0,
+            generalrank: 1,
+            score: 0
           })
-
         }
       });
 
