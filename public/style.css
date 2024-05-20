@@ -103,6 +103,16 @@ input {
     overflow-y: auto;
 }
 
+#achievement-table {
+    width: 90%;
+    border: none;
+}
+
+#achievement-table>tr,
+td {
+    text-align: left;
+}
+
 #player-star {
     width: 32px;
 }
