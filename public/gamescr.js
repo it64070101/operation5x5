@@ -607,11 +607,13 @@ function exitRoom(event) {
                     gameDataRef.child(roomCode).child("user-x-email").remove();
                     gameDataRef.child(roomCode).child("user-x-id").remove();
                     gameDataRef.child(roomCode).child("user-x-name").remove();
+                    gameDataRef.child(roomCode).child("user-x-genrank").remove();
                 }
                 else if (id == "user-o-email" && id_data == currentUser.email) {
                     gameDataRef.child(roomCode).child("user-o-email").remove();
                     gameDataRef.child(roomCode).child("user-o-id").remove();
                     gameDataRef.child(roomCode).child("user-o-name").remove();
+                    gameDataRef.child(roomCode).child("user-o-genrank").remove();
                 }
             });
         });
@@ -633,9 +635,11 @@ function switchPlayer(event) {
     let keyIDX = `user-x-id`;
     let keyEmailX = `user-x-email`;
     let keyNameX = `user-x-name`;
+    let keyGenrankX = `user-x-genrank`;
     let keyIDO = `user-o-id`;
     let keyEmailO = `user-o-email`;
     let keyNameO = `user-o-name`;
+    let keyGenrankO = `user-o-genrank`;
     firebase.database().ref('Game/' + roomCode).once('value', (snapshot) => {
         snapshot.forEach((data) => {
             let id = data.key;
@@ -674,20 +678,24 @@ function switchPlayer(event) {
         gameDataRef.child(roomCode).update({
             [keyIDX]: saveIDO,
             [keyEmailX]: saveEmailO,
-            [keyNameX]: saveNameO
+            [keyNameX]: saveNameO,
+            [keyGenrankX]: 1
         });
         gameDataRef.child(roomCode).child("user-o-email").remove();
         gameDataRef.child(roomCode).child("user-o-id").remove();
         gameDataRef.child(roomCode).child("user-o-name").remove();
+        gameDataRef.child(roomCode).child("user-o-genrank").remove();
     }
     else if (saveEmailO == undefined) {
         gameDataRef.child(roomCode).update({
             [keyIDO]: saveIDX,
             [keyEmailO]: saveEmailX,
-            [keyNameO]: saveNameX
+            [keyNameO]: saveNameX,
+            [keyGenrankO]: 1
         });
         gameDataRef.child(roomCode).child("user-x-email").remove();
         gameDataRef.child(roomCode).child("user-x-id").remove();
         gameDataRef.child(roomCode).child("user-x-name").remove();
+        gameDataRef.child(roomCode).child("user-x-genrank").remove();
     }
 }

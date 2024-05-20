@@ -30,20 +30,24 @@ function submitForm() {
                 let tmpTD = `user-x-id`;
                 let tmpEmail = `user-x-email`;
                 let tmpName = `user-x-name`;
+                let tmpGenrank = `user-x-genrank`;
                 selectRoom.child(roomCode).update({
                     [tmpTD]: currentUser.uid,
                     [tmpEmail]: currentUser.email,
-                    [tmpName]: currentUser.displayName
+                    [tmpName]: currentUser.displayName,
+                    [tmpGenrank]: 1
                 });
             }
             else if (rooms[roomCode]["user-o-email"] == undefined && rooms[roomCode]["user-x-email"] != currentUser.email) {
                 let tmpTD = `user-o-id`;
                 let tmpEmail = `user-o-email`;
                 let tmpName = `user-o-name`;
+                let tmpGenrank = `user-o-genrank`;
                 selectRoom.child(roomCode).update({
                     [tmpTD]: currentUser.uid,
                     [tmpEmail]: currentUser.email,
-                    [tmpName]: currentUser.displayName
+                    [tmpName]: currentUser.displayName,
+                    [tmpGenrank]: 1
                 });
             }
                 addUser.child(currentUser.uid).update({

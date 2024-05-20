@@ -8,12 +8,15 @@ function createRoom(publceRoom) {
     let tmpTD = `user-x-id`;
     let tmpEmail = `user-x-email`;
     let tmpName = `user-x-name`;
+    let tmpGenrank = `user-x-genrank`;
+
     createRoom.child(roomCode).update({
         start: "start",
         [tmpTD]: currentUser.uid,
         [tmpEmail]: currentUser.email,
         matchmaking: publceRoom,
-        [tmpName]: currentUser.displayName
+        [tmpName]: currentUser.displayName,
+        [tmpGenrank]: 1
     });
     addUser.child(currentUser.uid).update({
       Isplay: true,
