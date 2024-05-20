@@ -619,7 +619,7 @@ function exitRoom(event) {
             Isplay: false,
             Inroom: "",
         })
-        window.location.href = "playmode.html";
+        window.location.href = "room.html";
     }
 }
 
