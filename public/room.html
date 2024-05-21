@@ -27,6 +27,8 @@
         <button class="select profile-button" id="player-photo-mobile" type="button"></button>
         <button class="plain host-button" type="button" onclick="createRoom(false)"><i
                 class="fa-solid fa-circle-plus"></i><br>สร้างสมรภูมิใหม่</button>
+        <button class="plain join-button" type="button" onclick="joinRoom()"><i
+                class="fa-solid fa-door-open"></i><br>เข้าร่วมสมรภูมิ</button>
         <button class="plain random-button" type="button" onclick="findMatchmakingRooms()"><i
                 class="fa-solid fa-shuffle"></i><br>สุ่มสมรภูมิ</button>
         <button class="plain tutorial-button" type="button"><i
@@ -40,6 +42,8 @@
             <div class="button-container">
                 <button class="select host-button" type="button" onclick="createRoom(false)"><i
                         class="fa-solid fa-circle-plus"></i><br>สร้างสมรภูมิ</button>
+                <button class="select join-button" type="button" onclick="joinRoom()"><i
+                        class="fa-solid fa-door-open"></i><br>เข้าร่วมสมรภูมิ</button>
                 <button class="select random-button" type="button" onclick="findMatchmakingRooms()"><i
                         class="fa-solid fa-shuffle"></i><br>สุ่มสมรภูมิ</button>
                 <button class="small tutorial-button" type="button"><i
@@ -56,6 +60,24 @@
                 <button class="select profile-button" id="player-photo" type="button"></button>
             </div>
         </div>
+    </div>
+    <div class="popup-overlay" id="popupOverlay">
+
+        <div class="popup" id="popup">
+
+            <span class="close" id="closePopup">&times;</span>
+
+            <div class="popup-content">
+                <p>กรอกรหัสที่ได้รับจากเพื่อนของคุณเพื่อเข้าสู่สมรภูมิ</p>
+
+                <input type="email" placeholder="รหัสสมรภูมิ" id="emailInput">
+
+                <button class="small" onclick="submitForm()"><i class="fa-solid fa-check"></i><br>ยืนยันรหัส</button>
+
+            </div>
+
+        </div>
+
     </div>
     <script src="script.js"></script>
     <script src="auth.js"></script>
