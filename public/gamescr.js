@@ -629,9 +629,11 @@ function switchPlayer(event) {
     let saveEmailX;
     let saveIDX;
     let saveNameX;
+    let saveGenrankX;
     let saveEmailO;
     let saveIDO;
     let saveNameO;
+    let saveGenrankO;
     let keyIDX = `user-x-id`;
     let keyEmailX = `user-x-email`;
     let keyNameX = `user-x-name`;
@@ -649,6 +651,12 @@ function switchPlayer(event) {
             }
             else if (id == "user-o-email") {
                 saveEmailO = id_data;
+            }
+            else if (id == "user-x-genrank") {
+                saveGenrankX = id_data;
+            }
+            else if (id == "user-o-genrank") {
+                saveGenrankO = id_data;
             }
             else if (id == "user-x-id") {
                 saveIDX = id_data;
@@ -669,9 +677,11 @@ function switchPlayer(event) {
             [keyIDX]: saveIDO,
             [keyEmailX]: saveEmailO,
             [keyNameX]: saveNameO,
+            [keyGenrankX]: saveGenrankO,
             [keyIDO]: saveIDX,
             [keyEmailO]: saveEmailX,
-            [keyNameO]: saveNameX
+            [keyNameO]: saveNameX,
+            [keyGenrankO]: saveGenrankX
         });
     }
     else if (saveEmailX == undefined) {
@@ -679,7 +689,7 @@ function switchPlayer(event) {
             [keyIDX]: saveIDO,
             [keyEmailX]: saveEmailO,
             [keyNameX]: saveNameO,
-            [keyGenrankX]: 1
+            [keyGenrankX]: saveGenrankO
         });
         gameDataRef.child(roomCode).child("user-o-email").remove();
         gameDataRef.child(roomCode).child("user-o-id").remove();
@@ -691,7 +701,7 @@ function switchPlayer(event) {
             [keyIDO]: saveIDX,
             [keyEmailO]: saveEmailX,
             [keyNameO]: saveNameX,
-            [keyGenrankO]: 1
+            [keyGenrankO]: saveGenrankX
         });
         gameDataRef.child(roomCode).child("user-x-email").remove();
         gameDataRef.child(roomCode).child("user-x-id").remove();

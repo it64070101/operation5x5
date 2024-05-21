@@ -21,39 +21,48 @@ function findMatchmakingRooms() {
         if (roomlist.length > 0) {
             let length = (roomlist.length) - 1;
             let randomRoom = getRandomInt(0, length);
-            if (snapshot.val()[roomlist[randomRoom]]["user-x-email"] == undefined) {
-                const selectRoom = firebase.database().ref("Game")
-                const currentUser = firebase.auth().currentUser;
-                let tmpTD = `user-x-id`;
-                let tmpEmail = `user-x-email`;
-                let tmpName = `user-x-name`;
-                let tmpGenrank = `user-x-genrank`;
-                selectRoom.child(roomlist[randomRoom]).update({
-                    [tmpTD]: currentUser.uid,
-                    [tmpEmail]: currentUser.email,
-                    [tmpName]: currentUser.displayName,
-                    [tmpGenrank]: 1
+            const selectRoom = firebase.database().ref("Game")
+            const currentUser = firebase.auth().currentUser;
+            const getUserData = firebase.database().ref("user_google");
+            getUserData.child(currentUser.uid).once("value").then((subsnapshot) => {
+                let playerGenrank = 1;
+                subsnapshot.forEach((data) => {
+                    let id = data.key;
+                    let id_data = data.val();
+                    if (id == "generalrank") {
+                        playerGenrank = id_data;
+                    }
                 });
-            }
-            else if (snapshot.val()[roomlist[randomRoom]]["user-o-email"] == undefined) {
-                const selectRoom = firebase.database().ref("Game")
-                const currentUser = firebase.auth().currentUser;
-                let tmpTD = `user-o-id`;
-                let tmpEmail = `user-o-email`;
-                let tmpName = `user-o-name`;
-                let tmpGenrank = `user-o-genrank`;
-                selectRoom.child(roomlist[randomRoom]).update({
-                    [tmpTD]: currentUser.uid,
-                    [tmpEmail]: currentUser.email,
-                    [tmpName]: currentUser.displayName,
-                    [tmpGenrank]: 1
-                });
-            }
-            addUser.child(currentUser.uid).update({
-                Isplay: true,
-                Inroom: roomlist[randomRoom],
-              })
-            window.location.href = `game.html?room=${(roomlist[randomRoom])}`;
+                if (snapshot.val()[roomlist[randomRoom]]["user-x-email"] == undefined) {
+                    let tmpTD = `user-x-id`;
+                    let tmpEmail = `user-x-email`;
+                    let tmpName = `user-x-name`;
+                    let tmpGenrank = `user-x-genrank`;
+                    selectRoom.child(roomlist[randomRoom]).update({
+                        [tmpTD]: currentUser.uid,
+                        [tmpEmail]: currentUser.email,
+                        [tmpName]: currentUser.displayName,
+                        [tmpGenrank]: playerGenrank
+                    });
+                }
+                else if (snapshot.val()[roomlist[randomRoom]]["user-o-email"] == undefined) {
+                    let tmpTD = `user-o-id`;
+                    let tmpEmail = `user-o-email`;
+                    let tmpName = `user-o-name`;
+                    let tmpGenrank = `user-o-genrank`;
+                    selectRoom.child(roomlist[randomRoom]).update({
+                        [tmpTD]: currentUser.uid,
+                        [tmpEmail]: currentUser.email,
+                        [tmpName]: currentUser.displayName,
+                        [tmpGenrank]: playerGenrank
+                    });
+                }
+                addUser.child(currentUser.uid).update({
+                    Isplay: true,
+                    Inroom: roomlist[randomRoom],
+                })
+                window.location.href = `game.html?room=${(roomlist[randomRoom])}`;
+            });
         }
         else {
             //if can't find room let createroom
