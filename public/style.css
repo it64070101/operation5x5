@@ -126,6 +126,17 @@ td {
     background-size: cover;
 }
 
+#player-photo-x,
+#player-photo-o {
+    width: 96px;
+    height: 96px;
+    border: #000 solid 1px;
+    border-radius: 100%;
+    background-position: center;
+    background-size: cover;
+}
+
+
 #player-photo-mobile {
     max-width: 128px;
     max-height: 128px;

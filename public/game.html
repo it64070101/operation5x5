@@ -24,47 +24,37 @@
         <div class="page" id="join-game">
             <div class="container">
                 <h1 id="showRoomCode">รหัสสมรภูมิ</h1>
+                <div class="container d-flex justify-content-center mb-2">
+                    <button type="button" id="btnStateRoom" class="btn btn-success mx-1 gameBtn">สาธารณะ</button>
+                </div>
                 <form class="form-inline">
-                    <div class="form-group mb-2 col-10 namePlayer">
+                    <div class="form-group mb-2 namePlayer">
+                        <img id="player-photo-x" src="" alt=""><br>
                         <label for="inputPlayer-x" class="col-form-label col-2">ฝ่าย X </label>
-                        <div class="col-10">
-                            <input readonly type="text" class="form-control namePlayer" id="inputPlayer-x"
-                                placeholder="ผู้บัญชาการฝ่าย X">
-                        </div>
+                        <input readonly type="text" class="form-control namePlayer" id="inputPlayer-x"
+                            placeholder="ผู้บัญชาการฝ่าย X">
+                        <label id="player-rank-x" class="col-form-label col-2">Rank</label>
                     </div>
-                    <!-- <div class="form-group mb-2 col-2">
-                        <button type="button" id="btnJoin-x" class="btn btn-primary btn-join gameBtn">Join</button>
-                        <button type="button" id="btnCancel-x"
-                            class="btn btn-secondary btn-cancel-join-game gameBtn">Cancel</button>
-                    </div> -->
                 </form>
                 <form class="form-inline">
                     <div class="form-group mb-2 col-10 namePlayer">
+                        <img id="player-photo-o" src="" alt=""><br>
                         <label for="inputPlayer-o" class="col-form-label col-2">ฝ่าย O</label>
-                        <div class="col-10">
-                            <input readonly type="text" class="form-control namePlayer" id="inputPlayer-o"
-                                placeholder="ผู้บัญชาการฝ่าย O">
-                        </div>
+                        <input readonly type="text" class="form-control namePlayer" id="inputPlayer-o"
+                            placeholder="ผู้บัญชาการฝ่าย O">
+                        <label id="player-rank-o" class="col-form-label col-2">Rank</label>
                     </div>
-                    <!-- <div class="form-group mb-2 col-2">
-                        <button type="button" id="btnJoin-o" class="btn btn-primary btn-join gameBtn">Join</button>
-                        <button type="button" id="btnCancel-o"
-                            class="btn btn-secondary btn-cancel-join-game gameBtn">Cancel</button>
-                    </div> -->
                 </form>
             </div>
             <div class="container d-flex justify-content-center mb-2">
                 <button type="button" id="btnSwitchPlayer" class="btn btn-success mx-1 small"><i
-                        class="fa-solid fa-right-left"></i><br>สลับ</button>
+                        class="fa-solid fa-right-left"></i><br>สลับฝั่ง</button>
             </div>
             <div class="container d-flex justify-content-center mb-2">
-                <button type="button" id="btnStateRoom" class="btn btn-success mx-1 gameBtn">สาธารณะ</button>
-            </div>
-            <div class="container d-flex justify-content-center mb-2">
-                <button type="button" id="btnStartGame" class="btn btn-success mx-1 select"><i
-                        class="fa-solid fa-play"></i><br>เริ่มสมรภูมิ</button><br>
+                <button type="button" id="btnStartGame" class="btn btn-success mx-1 small"><i
+                        class="fa-solid fa-play"></i><br>เริ่ม</button>
                 <button type="button" id="btnExitGame" class="btn btn-success mx-1 small"><i
-                        class="fa-solid fa-arrow-left"></i><br>ออกจากสมรภูมิ</button>
+                        class="fa-solid fa-arrow-left"></i><br>ออก</button>
             </div>
         </div>
         <div class="page" id="play-game">

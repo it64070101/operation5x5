@@ -565,11 +565,11 @@ function updateGame(snapshot) {
                         break;
                     case "matchmaking":
                         if (gameInfo[key]) {
-                            btnState.innerText = "PUBLIC";
+                            btnState.innerText = "สาธารณะ";
                             btnState.style.backgroundColor = "green";
                         }
                         else {
-                            btnState.innerText = "PRIVATE";
+                            btnState.innerText = "ส่วนตัว";
                             btnState.style.backgroundColor = "red";
                         }
                         break;
@@ -579,6 +579,13 @@ function updateGame(snapshot) {
                     case "user-o-name":
                         document.getElementById("inputPlayer-o").value = gameInfo[key];
                         break;
+                    case "user-x-genrank":
+                        document.getElementById("player-rank-x").value = gameInfo[key];
+                        break;
+                    case "user-o-genrank":
+                        document.getElementById("player-rank-o").value = gameInfo[key];
+                        break;
+
                 }
             })
         }
