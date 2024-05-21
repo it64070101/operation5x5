@@ -47,39 +47,3 @@ function hideOverlay() {
     const sidebar = document.querySelector("#mobile-sidebar")
     sidebar.style.left = "-100%"
 }
-
-function addNewRoom() {
-    let roomName = "function: addNewRoom()"
-    let playerName = "ใน script.js"
-    let playerRank = "rank"
-    let room = document.createElement('button')
-    room.classList.add('room');
-
-    let divRoomName = document.createElement('div')
-    divRoomName.appendChild(document.createTextNode(roomName))
-    divRoomName.classList.add('room-name')
-
-    let divPlayerName = document.createElement('div')
-    divPlayerName.appendChild(document.createTextNode(playerName))
-    divPlayerName.classList.add('player-name')
-
-    let divPlayerRank = document.createElement('div')
-    divPlayerRank.appendChild(document.createTextNode(playerRank))
-    divPlayerRank.classList.add('player-rank')
-
-    room.appendChild(divRoomName)
-    room.appendChild(divPlayerName)
-    room.appendChild(divPlayerRank)
-
-    let roomList = document.querySelector('#room-list')
-    roomList.appendChild(room);
-}
-
-addNewRoom()
-addNewRoom()
-addNewRoom()
-addNewRoom()
-addNewRoom()
-addNewRoom()
-addNewRoom()
-addNewRoom()
