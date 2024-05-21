@@ -69,7 +69,7 @@ p {
 	/* color: dodgerblue; */
 	font-size: 20pt;
 	cursor: pointer;
-	margin: auto;
+	margin: 4px;
 }
 
 /* Change input arrow button style when disabled.*/
@@ -82,17 +82,20 @@ p {
 
 #top-but,
 #bot-but {
-	width: 90%;
+	display: flex;
+	justify-content: center;
 }
 
 #lef-but {
-	height: 90%;
-	margin-right: 0;
+	display: flex;
+	flex-direction: column;
+	align-items: flex-end;
 }
 
 #rig-but {
-	height: 90%;
-	margin-left: 0;
+	display: flex;
+	flex-direction: column;
+	align-items: flex-start;
 }
 
 
