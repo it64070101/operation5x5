@@ -125,7 +125,7 @@ function insertPlayer() {
     const row = leaderboardTable.insertRow();
     const currentUser = firebase.auth().currentUser;
     if (currentUser.uid == player.user_id) {
-      document.querySelector("#player-rank").innerHTML += " " + (index + 1)
+      //document.querySelector("#player-rank").innerHTML += " " + (index + 1)
       addUser.child(currentUser.uid).update({
         rank: index + 1,
       })

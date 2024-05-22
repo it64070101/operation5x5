@@ -10,6 +10,7 @@ const firebaseConfig = {
 };
 firebase.initializeApp(firebaseConfig)
 const addUser = firebase.database().ref("user_google")
+const achievementUser = firebase.database().ref("user_achievement")
 var provider = new firebase.auth.GoogleAuthProvider();
 
 firebase.auth().onAuthStateChanged((user) => {
@@ -49,6 +50,7 @@ function logoutUser() {
 }
 
 var add_score = true;
+var add_achievement = true;
 function loginUser(event) {
   firebase.auth()
     .signInWithPopup(provider)
@@ -71,7 +73,40 @@ function loginUser(event) {
         google_id: currentUser.uid,
         name: currentUser.displayName,
       })
+      //add achievement table
+      achievementUser.child(currentUser.uid).update({
+        email: currentUser.email,
+        google_id: currentUser.uid,
+        name: currentUser.displayName,
+      })
       // read data
+      achievementUser.child(currentUser.uid).once("value").then((snapshot) => {
+        snapshot.forEach((data) => {
+          var id = data.key;
+          var id_data = data.val();
+          if (id == "win_continuously_5") {
+            add_achievement = false
+           
+          }
+        });
+        // add score win round losr to user
+        if (add_achievement == true) {
+          achievementUser.child(currentUser.uid).update({
+            win_continuously_05: false,
+            win_continuously_10: false,
+            win_continuously_15: false,
+            win_continuously_20: false,
+            win_continuously_25: false,
+            win_continuously_50: false,
+            share_5time: false,
+            win_in_enemy_turn: false,
+            win_continuously_challeng: false,
+            win_continuously_uncompromise: false,
+            win_top_score: false,
+            admin : false
+          })
+        }
+      });
       addUser.child(currentUser.uid).once("value").then((snapshot) => {
         snapshot.forEach((data) => {
           var id = data.key;
@@ -87,7 +122,12 @@ function loginUser(event) {
             count_round: 0,
             count_win: 0,
             generalrank: 1,
-            score: 0
+            score: 0,
+            win_continuously: 0,
+            share_time: 0,
+            win_in_enemy_turn_time: 0,
+            win_continuously_challeng_time: 0,
+            win_continuously_uncompromise_time: 0,
           })
         }
       });

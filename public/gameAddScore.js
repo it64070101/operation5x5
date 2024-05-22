@@ -29,6 +29,7 @@ function addWin(userid) {
   addUser.child(userid).once("value").then((snapshot) => {
     var userRound = 0;
     var uesrWin = 0;
+    var uesrWin_continuouslyn = 0;
     snapshot.forEach((data) => {
       var id = data.key;
       var id_data = data.val();
@@ -38,10 +39,14 @@ function addWin(userid) {
       if (id == "count_win") {
         uesrWin = id_data;
       }
+      if (id == "win_continuously") {
+        uesrWin_continuouslyn = id_data;
+      }
     });
     addUser.child(userid).update({
       count_round: userRound + 1,
       count_win: uesrWin + 1,
+      win_continuously: uesrWin_continuouslyn+1,
     })
   });
 }
@@ -63,6 +68,7 @@ function addLose(userid) {
     addUser.child(userid).update({
       count_round: userRound + 1,
       count_lose: uesrLose + 1,
+      win_continuously: 0,
     })
   });
 }
