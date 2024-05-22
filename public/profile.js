@@ -11,6 +11,7 @@ firebase.auth().onAuthStateChanged((user) => {
       snapshot.forEach((data) => {
         var id = data.key;
         var id_data = data.val();
+        console.log(data.key);
         if (id == "count_round") {
           document.querySelector("#player-matchs").innerHTML = `Matchs: ${id_data}`;
         }
@@ -22,6 +23,10 @@ firebase.auth().onAuthStateChanged((user) => {
             case "count_lose":
               thisUserLose = `${id_data}`;
           }
+        }
+        if (id == "generalrank") {
+          document.getElementById("player-star").src = showRankImage(id_data);
+
         }
 
       })

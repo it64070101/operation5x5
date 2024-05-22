@@ -103,6 +103,12 @@ input {
     overflow-y: auto;
 }
 
+#player-rank-x,
+#player-rank-o {
+    width: 32px;
+    height: 32px;
+}
+
 #achievement-table {
     width: 90%;
     border: none;

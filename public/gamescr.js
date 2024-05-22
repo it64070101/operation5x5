@@ -580,12 +580,17 @@ function updateGame(snapshot) {
                         document.getElementById("inputPlayer-o").value = gameInfo[key];
                         break;
                     case "user-x-genrank":
-                        document.getElementById("player-rank-x").value = gameInfo[key];
+                        document.getElementById("player-rank-x").src = showRankImage(gameInfo[key]);
                         break;
                     case "user-o-genrank":
-                        document.getElementById("player-rank-o").value = gameInfo[key];
+                        document.getElementById("player-rank-o").src = showRankImage(gameInfo[key]);
                         break;
-
+                    case "user-x-picture":
+                        document.getElementById("player-photo-x").style.backgroundImage = `url(${gameInfo[key]})`;
+                        break;
+                    case "user-o-picture":
+                        document.getElementById("player-photo-o").style.backgroundImage = `url(${gameInfo[key]})`;
+                        break;
                 }
             })
         }

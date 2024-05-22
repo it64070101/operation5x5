@@ -47,3 +47,36 @@ function hideOverlay() {
     const sidebar = document.querySelector("#mobile-sidebar")
     sidebar.style.left = "-100%"
 }
+
+function rankCalculate(rank) {
+    if (rank >= 320) {
+        return "General of the Army";
+    } else if (rank >= 200) {
+        return "General";
+    } else if (rank >= 180) {
+        return "Lieutenant General";
+    } else if (rank >= 80) {
+        return "Major General";
+    } else if (rank >= 0) {
+        return "Brigadier General";
+    } else {
+        return "error";
+    }
+}
+
+function showRankImage(rank) {
+    let rankName = rankCalculate(rank);
+    if (rankName == "General of the Army") {
+        return "star5.png"
+    } else if (rankName == "General") {
+        return "star4.png"
+    } else if (rankName == "Lieutenant General") {
+        return "star3.png"
+    } else if (rankName == "Major General") {
+        return "star2.png"
+    } else if (rankName == "Brigadier General") {
+        return "star.png"
+    } else {
+        return "error"
+    }
+}

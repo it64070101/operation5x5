@@ -31,7 +31,11 @@ function addNewRoom(roomName, playerName, playerRank) {
     divPlayerName.classList.add('player-name')
 
     let divPlayerRank = document.createElement('div')
-    divPlayerRank.appendChild(document.createTextNode(playerRank))
+    rankImage = document.createElement('img');
+    rankImage.src = showRankImage(playerRank);
+    rankImage.id = "player-star";
+    divPlayerRank.appendChild(rankImage);
+    // divPlayerRank.appendChild(document.createTextNode(playerRank))
     divPlayerRank.classList.add('player-rank')
 
     room.appendChild(divRoomName)
