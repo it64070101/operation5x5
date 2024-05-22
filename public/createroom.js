@@ -9,6 +9,7 @@ function createRoom(publceRoom) {
     let tmpEmail = `user-x-email`;
     let tmpName = `user-x-name`;
     let tmpGenrank = `user-x-genrank`;
+    let tmpPicture = `user-x-picture`;
     
     getUserData.child(currentUser.uid).once("value").then((snapshot) => {
         let playerGenrank = 1;
@@ -25,7 +26,8 @@ function createRoom(publceRoom) {
             [tmpEmail]: currentUser.email,
             matchmaking: publceRoom,
             [tmpName]: currentUser.displayName,
-            [tmpGenrank]: playerGenrank
+            [tmpGenrank]: playerGenrank,
+            [tmpPicture]: currentUser.photoURL
         });
         addUser.child(currentUser.uid).update({
             Isplay: true,

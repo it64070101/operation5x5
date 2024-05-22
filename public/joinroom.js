@@ -41,11 +41,13 @@ function submitForm() {
                     let tmpEmail = `user-x-email`;
                     let tmpName = `user-x-name`;
                     let tmpGenrank = `user-x-genrank`;
+                    let tmpPicture = `user-x-picture`;
                     selectRoom.child(roomCode).update({
                         [tmpTD]: currentUser.uid,
                         [tmpEmail]: currentUser.email,
                         [tmpName]: currentUser.displayName,
-                        [tmpGenrank]: playerGenrank
+                        [tmpGenrank]: playerGenrank,
+                        [tmpPicture]: currentUser.photoURL
                     });
                 }
                 else if (rooms[roomCode]["user-o-email"] == undefined && rooms[roomCode]["user-x-email"] != currentUser.email) {
@@ -53,11 +55,13 @@ function submitForm() {
                     let tmpEmail = `user-o-email`;
                     let tmpName = `user-o-name`;
                     let tmpGenrank = `user-o-genrank`;
+                    let tmpPicture = `user-o-picture`;
                     selectRoom.child(roomCode).update({
                         [tmpTD]: currentUser.uid,
                         [tmpEmail]: currentUser.email,
                         [tmpName]: currentUser.displayName,
-                        [tmpGenrank]: playerGenrank
+                        [tmpGenrank]: playerGenrank,
+                        [tmpPicture]: currentUser.photoURL
                     });
                 }
                 addUser.child(currentUser.uid).update({
@@ -98,11 +102,13 @@ function joinRoomButton(roomcode) {
                     let tmpEmail = `user-x-email`;
                     let tmpName = `user-x-name`;
                     let tmpGenrank = `user-x-genrank`;
+                    let tmpPicture = `user-x-picture`;
                     selectRoom.child(roomCode).update({
                         [tmpTD]: currentUser.uid,
                         [tmpEmail]: currentUser.email,
                         [tmpName]: currentUser.displayName,
-                        [tmpGenrank]: playerGenrank
+                        [tmpGenrank]: playerGenrank,
+                        [tmpPicture]: currentUser.photoURL
                     });
                 }
                 else if (rooms[roomCode]["user-o-email"] == undefined && rooms[roomCode]["user-x-email"] != currentUser.email) {
@@ -110,11 +116,13 @@ function joinRoomButton(roomcode) {
                     let tmpEmail = `user-o-email`;
                     let tmpName = `user-o-name`;
                     let tmpGenrank = `user-o-genrank`;
+                    let tmpPicture = `user-o-picture`;
                     selectRoom.child(roomCode).update({
                         [tmpTD]: currentUser.uid,
                         [tmpEmail]: currentUser.email,
                         [tmpName]: currentUser.displayName,
-                        [tmpGenrank]: playerGenrank
+                        [tmpGenrank]: playerGenrank,
+                        [tmpPicture]: currentUser.photoURL
                     });
                 }
                 addUser.child(currentUser.uid).update({

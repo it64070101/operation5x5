@@ -615,12 +615,14 @@ function exitRoom(event) {
                     gameDataRef.child(roomCode).child("user-x-id").remove();
                     gameDataRef.child(roomCode).child("user-x-name").remove();
                     gameDataRef.child(roomCode).child("user-x-genrank").remove();
+                    gameDataRef.child(roomCode).child("user-x-picture").remove();
                 }
                 else if (id == "user-o-email" && id_data == currentUser.email) {
                     gameDataRef.child(roomCode).child("user-o-email").remove();
                     gameDataRef.child(roomCode).child("user-o-id").remove();
                     gameDataRef.child(roomCode).child("user-o-name").remove();
                     gameDataRef.child(roomCode).child("user-o-genrank").remove();
+                    gameDataRef.child(roomCode).child("user-o-picture").remove();
                 }
             });
         });
@@ -633,22 +635,31 @@ function exitRoom(event) {
 }
 
 function switchPlayer(event) {
+    // Save Player X Data
     let saveEmailX;
     let saveIDX;
     let saveNameX;
     let saveGenrankX;
+    let savePictureX;
+    // Save Player O Data
     let saveEmailO;
     let saveIDO;
     let saveNameO;
     let saveGenrankO;
+    let savePictureO;
+    // Player X Key of Data
     let keyIDX = `user-x-id`;
     let keyEmailX = `user-x-email`;
     let keyNameX = `user-x-name`;
     let keyGenrankX = `user-x-genrank`;
+    let keyPictureX = `user-x-picture`;
+    // Player O Key of Data
     let keyIDO = `user-o-id`;
     let keyEmailO = `user-o-email`;
     let keyNameO = `user-o-name`;
     let keyGenrankO = `user-o-genrank`;
+    let keyPictureO = `user-o-picture`;
+
     firebase.database().ref('Game/' + roomCode).once('value', (snapshot) => {
         snapshot.forEach((data) => {
             let id = data.key;
@@ -677,6 +688,12 @@ function switchPlayer(event) {
             else if (id == "user-o-name") {
                 saveNameO = id_data;
             }
+            else if (id == "user-x-picture") {
+                savePictureX = id_data;
+            }
+            else if (id == "user-o-picture") {
+                savePictureO = id_data;
+            }
         });
     });
     if (saveEmailX != undefined && saveEmailO != undefined) {
@@ -685,10 +702,12 @@ function switchPlayer(event) {
             [keyEmailX]: saveEmailO,
             [keyNameX]: saveNameO,
             [keyGenrankX]: saveGenrankO,
+            [keyPictureX]: savePictureO,
             [keyIDO]: saveIDX,
             [keyEmailO]: saveEmailX,
             [keyNameO]: saveNameX,
-            [keyGenrankO]: saveGenrankX
+            [keyGenrankO]: saveGenrankX,
+            [keyPictureO]: savePictureX
         });
     }
     else if (saveEmailX == undefined) {
@@ -696,23 +715,27 @@ function switchPlayer(event) {
             [keyIDX]: saveIDO,
             [keyEmailX]: saveEmailO,
             [keyNameX]: saveNameO,
-            [keyGenrankX]: saveGenrankO
+            [keyGenrankX]: saveGenrankO,
+            [keyPictureX]: savePictureO
         });
         gameDataRef.child(roomCode).child("user-o-email").remove();
         gameDataRef.child(roomCode).child("user-o-id").remove();
         gameDataRef.child(roomCode).child("user-o-name").remove();
         gameDataRef.child(roomCode).child("user-o-genrank").remove();
+        gameDataRef.child(roomCode).child("user-o-picture").remove();
     }
     else if (saveEmailO == undefined) {
         gameDataRef.child(roomCode).update({
             [keyIDO]: saveIDX,
             [keyEmailO]: saveEmailX,
             [keyNameO]: saveNameX,
-            [keyGenrankO]: saveGenrankX
+            [keyGenrankO]: saveGenrankX,
+            [keyPictureO]: savePictureX
         });
         gameDataRef.child(roomCode).child("user-x-email").remove();
         gameDataRef.child(roomCode).child("user-x-id").remove();
         gameDataRef.child(roomCode).child("user-x-name").remove();
         gameDataRef.child(roomCode).child("user-x-genrank").remove();
+        gameDataRef.child(roomCode).child("user-x-picture").remove();
     }
 }

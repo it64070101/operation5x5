@@ -38,11 +38,13 @@ function findMatchmakingRooms() {
                     let tmpEmail = `user-x-email`;
                     let tmpName = `user-x-name`;
                     let tmpGenrank = `user-x-genrank`;
+                    let tmpPicture = `user-x-picture`;
                     selectRoom.child(roomlist[randomRoom]).update({
                         [tmpTD]: currentUser.uid,
                         [tmpEmail]: currentUser.email,
                         [tmpName]: currentUser.displayName,
-                        [tmpGenrank]: playerGenrank
+                        [tmpGenrank]: playerGenrank,
+                        [tmpPicture]: currentUser.photoURL
                     });
                 }
                 else if (snapshot.val()[roomlist[randomRoom]]["user-o-email"] == undefined) {
@@ -50,11 +52,13 @@ function findMatchmakingRooms() {
                     let tmpEmail = `user-o-email`;
                     let tmpName = `user-o-name`;
                     let tmpGenrank = `user-o-genrank`;
+                    let tmpPicture = `user-o-picture`;
                     selectRoom.child(roomlist[randomRoom]).update({
                         [tmpTD]: currentUser.uid,
                         [tmpEmail]: currentUser.email,
                         [tmpName]: currentUser.displayName,
-                        [tmpGenrank]: playerGenrank
+                        [tmpGenrank]: playerGenrank,
+                        [tmpPicture]: currentUser.photoURL
                     });
                 }
                 addUser.child(currentUser.uid).update({
