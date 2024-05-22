@@ -17,6 +17,9 @@ roomListRef.on('value', (snapshot) => {
 
 function addNewRoom(roomName, playerName, playerRank) {
     let room = document.createElement('button')
+    room.setAttribute("type", "button")
+    room.setAttribute("data-code", roomName)
+    room.setAttribute("onclick", "joinRoomButton(this)")
     room.classList.add('room');
 
     let divRoomName = document.createElement('div')
