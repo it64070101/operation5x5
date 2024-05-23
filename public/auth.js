@@ -17,7 +17,12 @@ firebase.auth().onAuthStateChanged((user) => {
   const currentUser = firebase.auth().currentUser;
   const url = new URL(window.location.href);
   const pageName = url.pathname.split("/").pop();
-  if (user && (pageName == "index.html" || pageName == "")) {
+  console.log(localStorage.getItem("add_score"))
+  console.log(localStorage.getItem("add_achievement"))
+  console.log(user)
+  console.log(pageName)
+  if ((user && (pageName == "index.html" || pageName == "")) && (localStorage.getItem("add_score") && localStorage.getItem("add_achievement"))) {
+
     window.location.href = "room.html";
   }
   else if (!user && pageName != "index.html") {
@@ -45,6 +50,8 @@ firebase.auth().onAuthStateChanged((user) => {
 
 function logoutUser() {
   firebase.auth().signOut();
+  localStorage.setItem("add_achievement", false);
+  localStorage.setItem("add_score", false);
   console.log("Logout completed")
   window.location.href = "index.html";
 }
@@ -80,13 +87,40 @@ function loginUser(event) {
         name: currentUser.displayName,
       })
       // read data
+      addUser.child(currentUser.uid).once("value").then((snapshot) => {
+        snapshot.forEach((data) => {
+          var id = data.key;
+          var id_data = data.val();
+          if (id == "count_round") {
+            add_score = false
+
+          }
+        });
+        // add score win round losr to user
+        if (add_score == true) {
+          addUser.child(currentUser.uid).update({
+            count_lose: 0,
+            count_round: 0,
+            count_win: 0,
+            generalrank: 1,
+            score: 0,
+            win_continuously: 0,
+            share_time: 0,
+            win_in_enemy_turn_time: 0,
+            win_continuously_challeng_time: 0,
+            win_continuously_uncompromise_time: 0,
+          })
+        }
+        localStorage.setItem("add_score", true);
+      });
       achievementUser.child(currentUser.uid).once("value").then((snapshot) => {
         snapshot.forEach((data) => {
           var id = data.key;
           var id_data = data.val();
           if (id == "win_continuously_05") {
             add_achievement = false
-           
+            localStorage.setItem("add_achievement", true);
+            window.location.href = "room.html";
           }
         });
         // add score win round losr to user
@@ -105,35 +139,12 @@ function loginUser(event) {
             win_top_score: false,
             admin : false
           })
-        }
-      });
-      addUser.child(currentUser.uid).once("value").then((snapshot) => {
-        snapshot.forEach((data) => {
-          var id = data.key;
-          var id_data = data.val();
-          if (id == "count_round") {
-            add_score = false
-          }
-        });
-        // add score win round losr to user
-        if (add_score == true) {
-          addUser.child(currentUser.uid).update({
-            count_lose: 0,
-            count_round: 0,
-            count_win: 0,
-            generalrank: 1,
-            score: 0,
-            win_continuously: 0,
-            share_time: 0,
-            win_in_enemy_turn_time: 0,
-            win_continuously_challeng_time: 0,
-            win_continuously_uncompromise_time: 0,
-          })
-        }
-      });
 
+        }
+      });
+      localStorage.setItem("add_achievement", true);
       window.location.href = "room.html";
-
+      //window.location.href = "room.html";
     }).catch((error) => {
       // Handle Errors here.
       var errorCode = error.code;
