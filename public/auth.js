@@ -84,7 +84,7 @@ function loginUser(event) {
         snapshot.forEach((data) => {
           var id = data.key;
           var id_data = data.val();
-          if (id == "win_continuously_5") {
+          if (id == "win_continuously_05") {
             add_achievement = false
            
           }
