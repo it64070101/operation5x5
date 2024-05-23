@@ -456,6 +456,10 @@ function updateGame(snapshot) {
 
     document.getElementById("inputPlayer-x").value = "";
     document.getElementById("inputPlayer-o").value = "";
+    document.getElementById("player-rank-x").src = showRankImage();
+    document.getElementById("player-rank-o").src = showRankImage();
+    document.getElementById("player-photo-x").style.backgroundImage = ``;
+    document.getElementById("player-photo-o").style.backgroundImage = ``;
     btnStart.disabled = true;
     btnTerminate.disabled = true;
     playerCount = 0;

@@ -49,15 +49,15 @@ function hideOverlay() {
 }
 
 function rankCalculate(rank) {
-    if (rank >= 320) {
+    if (rank >= 5) {
         return "General of the Army";
-    } else if (rank >= 200) {
+    } else if (rank >= 4) {
         return "General";
-    } else if (rank >= 180) {
+    } else if (rank >= 3) {
         return "Lieutenant General";
-    } else if (rank >= 80) {
+    } else if (rank >= 2) {
         return "Major General";
-    } else if (rank >= 0) {
+    } else if (rank >= 1) {
         return "Brigadier General";
     } else {
         return "error";
